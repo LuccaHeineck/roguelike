@@ -1,16 +1,30 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerControl : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public float movSpeed = 5f;
+    public Rigidbody2D rb;
+    public InputAction playerControls;
+    Vector2 moveDirection = Vector2.zero;
+
+    void OnEnable()
     {
-        
+        playerControls.Enable();
     }
 
-    // Update is called once per frame
+    void OnDisable()
+    {
+        playerControls.Disable();
+    }
+
     void Update()
     {
-        
+        moveDirection = playerControls.ReadValue<Vector2>();
+    }
+
+    void FixedUpdate()
+    {
+        rb.linearVelocity = moveDirection * movSpeed;
     }
 }
