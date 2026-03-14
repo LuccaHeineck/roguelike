@@ -102,3 +102,12 @@ InitTestScene*.unity*
 *.sln
 *.slnx
 *.csproj
+
+# Plugin de tema escuro
+Assets/Plugins/UnityEditorDarkMode/UnityEditorDarkMode.dll
+Assets/Plugins/UnityEditorDarkMode/UnityEditorDarkMode.dll.ini
+Assets/Plugins/UnityEditorDarkMode/UnityEditorDarkMode.dll.ini.meta
+Assets/Plugins/UnityEditorDarkMode/UnityEditorDarkMode.dll.meta
+Assets/Plugins/UnityEditorDarkMode.meta
+Assets/Plugins/UnityEditorDarkMode/README.txt
+Assets/Plugins/UnityEditorDarkMode/README.txt.meta
