@@ -10934,6 +10934,11 @@ Transform:
   - {fileID: 1989639561}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &335424280 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7220173918255507538, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+  m_PrefabInstance: {fileID: 7270877572294805047}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &488194872
 GameObject:
   m_ObjectHideFlags: 0
@@ -10984,6 +10989,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8130280897739518581, guid: d17e90559a18f4148a21647faf905c37, type: 3}
   m_PrefabInstance: {fileID: 7270877572294805047}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &674927336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335424280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
+  m_CategoryHash: 0
+  m_labelHash: 0
+  m_SpriteKey: 0
+  m_SpriteHash: 416330198
+--- !u!114 &674927337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335424280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrary
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 33e6c1bf4e7215846909c3e0c5e44322, type: 3}
 --- !u!1 &679936694
 GameObject:
   m_ObjectHideFlags: 0
@@ -28568,10 +28603,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8973892786588399178, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 9128384846270689552, guid: b670139909108f440b5c3c8dfd6ef3a1, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7220173918255507538, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 674927337}
+    - targetCorrespondingSourceObject: {fileID: 7220173918255507538, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 674927336}
   m_SourcePrefab: {fileID: 100100000, guid: d17e90559a18f4148a21647faf905c37, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
