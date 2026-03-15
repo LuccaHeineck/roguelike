@@ -12,6 +12,10 @@ public class PlayerAttackState : IState
     {
         timer = 0f;
         player.Rb.linearVelocity = Vector2.zero;
+
+        player.Animator.SetFloat("lastInputX", player.LastMoveInput.x);
+        player.Animator.SetFloat("lastInputY", player.LastMoveInput.y);
+
         player.Animator.SetTrigger("Attacking");
     }
 

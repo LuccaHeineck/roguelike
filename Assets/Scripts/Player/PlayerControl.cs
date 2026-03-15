@@ -30,10 +30,10 @@ public class PlayerControl : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (context.canceled)
-            LastMoveInput = MoveInput;
-
         MoveInput = context.ReadValue<Vector2>();
+
+        if (MoveInput != Vector2.zero)
+            LastMoveInput = MoveInput;
     }
 
     public void Attack(InputAction.CallbackContext context)
