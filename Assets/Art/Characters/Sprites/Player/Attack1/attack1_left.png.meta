@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: 86202c1eba26bef4b8bc93ebd95de6f6
+guid: 1ee646511c047504bbfdfbb6d7b43d9e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2061284315431252709
-    second: decor_16x16_0
+      213: 1349072500916404301
+    second: attack1_left_0
   - first:
-      213: -3212286273555906102
-    second: decor_16x16_1
+      213: 8004796348004528757
+    second: attack1_left_1
   - first:
-      213: 1182821835117424558
-    second: decor_16x16_2
+      213: -4242021782923076649
+    second: attack1_left_2
   - first:
-      213: 9072027579460667051
-    second: decor_16x16_3
+      213: -5116275975489642934
+    second: attack1_left_3
   - first:
-      213: 8401399213648291765
-    second: decor_16x16_4
+      213: 8192281092980831563
+    second: attack1_left_4
   - first:
-      213: 8042757354850781098
-    second: decor_16x16_5
+      213: -8194575958193948602
+    second: attack1_left_5
   - first:
-      213: 2541185146844476238
-    second: decor_16x16_6
+      213: -8600749959420936419
+    second: attack1_left_6
   - first:
-      213: 4496199408847516386
-    second: decor_16x16_7
+      213: -2272688392204017010
+    second: attack1_left_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -134,13 +134,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: decor_16x16_0
+      name: attack1_left_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 15
-        width: 64
-        height: 65
+        x: 40
+        y: 21
+        width: 17
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,20 +149,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b1dc2a516d8d463e0800000000000000
-      internalID: -2061284315431252709
+      spriteID: d40ce59ba4ed8b210800000000000000
+      internalID: 1349072500916404301
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_16x16_1
+      name: attack1_left_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 8
-        width: 7
-        height: 6
+        x: 102
+        y: 20
+        width: 51
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ac146d357aaab63d0800000000000000
-      internalID: -3212286273555906102
+      spriteID: 57277260edfb61f60800000000000000
+      internalID: 8004796348004528757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_16x16_2
+      name: attack1_left_2
       rect:
         serializedVersion: 2
-        x: 2
-        y: 1
-        width: 13
-        height: 12
+        x: 203
+        y: 20
+        width: 47
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,20 +193,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eafefb2313a3a6010800000000000000
-      internalID: 1182821835117424558
+      spriteID: 7db9663e9af4125c0800000000000000
+      internalID: -4242021782923076649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_16x16_3
+      name: attack1_left_3
       rect:
         serializedVersion: 2
-        x: 18
-        y: 7
-        width: 8
-        height: 7
+        x: 316
+        y: 20
+        width: 30
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,20 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ba6cc42940156ed70800000000000000
-      internalID: 9072027579460667051
+      spriteID: a4e13148b165ff8b0800000000000000
+      internalID: -5116275975489642934
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_16x16_4
+      name: attack1_left_4
       rect:
         serializedVersion: 2
-        x: 21
-        y: 3
-        width: 11
-        height: 8
+        x: 416
+        y: 20
+        width: 26
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,20 +237,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5b7a0c18214c79470800000000000000
-      internalID: 8401399213648291765
+      spriteID: b45754fdf34d0b170800000000000000
+      internalID: 8192281092980831563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_16x16_5
+      name: attack1_left_5
       rect:
         serializedVersion: 2
-        x: 33
-        y: 2
-        width: 13
-        height: 10
+        x: 513
+        y: 20
+        width: 25
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,20 +259,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa78a8ea33d9d9f60800000000000000
-      internalID: 8042757354850781098
+      spriteID: 648b4ee2594074e80800000000000000
+      internalID: -8194575958193948602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_16x16_6
+      name: attack1_left_6
       rect:
         serializedVersion: 2
-        x: 49
-        y: 1
-        width: 10
-        height: 8
+        x: 609
+        y: 20
+        width: 24
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,20 +281,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e43f9226d6a144320800000000000000
-      internalID: 2541185146844476238
+      spriteID: d1f72ca0b7ff3a880800000000000000
+      internalID: -8600749959420936419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: decor_16x16_7
+      name: attack1_left_7
       rect:
         serializedVersion: 2
-        x: 56
-        y: 6
-        width: 8
-        height: 7
+        x: 704
+        y: 20
+        width: 25
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -303,8 +303,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2e27dab5a85b56e30800000000000000
-      internalID: 4496199408847516386
+      spriteID: e82a681d2f9c570e0800000000000000
+      internalID: -2272688392204017010
       vertices: []
       indices: 
       edges: []
@@ -323,14 +323,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      decor_16x16_0: -2061284315431252709
-      decor_16x16_1: -3212286273555906102
-      decor_16x16_2: 1182821835117424558
-      decor_16x16_3: 9072027579460667051
-      decor_16x16_4: 8401399213648291765
-      decor_16x16_5: 8042757354850781098
-      decor_16x16_6: 2541185146844476238
-      decor_16x16_7: 4496199408847516386
+      attack1_left_0: 1349072500916404301
+      attack1_left_1: 8004796348004528757
+      attack1_left_2: -4242021782923076649
+      attack1_left_3: -5116275975489642934
+      attack1_left_4: 8192281092980831563
+      attack1_left_5: -8194575958193948602
+      attack1_left_6: -8600749959420936419
+      attack1_left_7: -2272688392204017010
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
