@@ -3,28 +3,29 @@ using UnityEngine.InputSystem;
 
 public class PlayerControl : MonoBehaviour
 {
-    public float movSpeed = 5f;
-    public Rigidbody2D rb;
-    public InputAction playerControls;
-    Vector2 moveDirection = Vector2.zero;
-
-    void OnEnable()
-    {
-        playerControls.Enable();
-    }
-
-    void OnDisable()
-    {
-        playerControls.Disable();
-    }
+    [SerializeField] private float movSpeed = 5f;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Vector2 moveInput;
+    [SerializeField] private Animator animator;
 
     void Update()
     {
-        moveDirection = playerControls.ReadValue<Vector2>();
+        rb.linearVelocity = moveInput * movSpeed;
     }
 
-    void FixedUpdate()
+    public void Move(InputAction.CallbackContext context)
     {
-        rb.linearVelocity = moveDirection * movSpeed;
+        animator.SetBool("isRunning", true);
+
+        if (context.canceled)
+        {
+            animator.SetBool("isRunning", false);
+            animator.SetFloat("lastInputX", moveInput.x);
+            animator.SetFloat("lastInputY", moveInput.y);
+        }
+
+        moveInput = context.ReadValue<Vector2>();
+        animator.SetFloat("InputX", moveInput.x);
+        animator.SetFloat("InputY", moveInput.y);
     }
 }
