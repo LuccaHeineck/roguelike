@@ -16,6 +16,13 @@ public class PlayerIdleState : IState
 
     public void Update()
     {
+        if (player.AttackPressed)
+        {
+            player.ConsumeAttack();
+            player.StateMachine.ChangeState(new PlayerAttackState(player));
+            return;
+        }
+
         if (player.MoveInput != Vector2.zero)
             player.StateMachine.ChangeState(new PlayerRunningState(player));
     }

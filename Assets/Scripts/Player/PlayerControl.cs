@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour
     public Vector2 MoveInput { get; private set; }
     public Vector2 LastMoveInput { get; private set; }
     public StateMachine StateMachine { get; private set; }
+    public bool AttackPressed { get; private set; }
 
 
     void Start()
@@ -34,4 +35,12 @@ public class PlayerControl : MonoBehaviour
 
         MoveInput = context.ReadValue<Vector2>();
     }
+
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            AttackPressed = true;
+    }
+
+    public void ConsumeAttack() => AttackPressed = false;
 }

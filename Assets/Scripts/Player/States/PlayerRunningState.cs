@@ -17,6 +17,13 @@ public class PlayerRunningState : IState
         player.Animator.SetFloat("InputX", player.MoveInput.x);
         player.Animator.SetFloat("InputY", player.MoveInput.y);
 
+        if (player.AttackPressed)
+        {
+            player.ConsumeAttack();
+            player.StateMachine.ChangeState(new PlayerAttackState(player));
+            return;
+        }
+
         if (player.MoveInput == Vector2.zero)
             player.StateMachine.ChangeState(new PlayerIdleState(player));
     }
