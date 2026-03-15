@@ -4,9 +4,16 @@ using UnityEngine.InputSystem;
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private float movSpeed = 5f;
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Vector2 moveInput;
-    [SerializeField] private Animator animator;
+    private Rigidbody2D rb;
+    private Vector2 moveInput;
+    private Animator animator;
+
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
