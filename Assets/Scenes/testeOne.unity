@@ -219,7 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b77a52343790849b7fcd075d53af54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
-  damage: 1
 --- !u!1 &237554476
 GameObject:
   m_ObjectHideFlags: 0
@@ -11141,11 +11140,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8973892786588399178, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: edc26c17d6c8e944f918b2abe1805cd5, type: 2}
     m_RemovedComponents:
     - {fileID: 1975646896462483760, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7220173918255507538, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1379209190}
+    - targetCorrespondingSourceObject: {fileID: 7220173918255507538, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1379209189}
+    - targetCorrespondingSourceObject: {fileID: 7220173918255507538, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1379209191}
   m_SourcePrefab: {fileID: 100100000, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
 --- !u!4 &674927329 stripped
 Transform:
@@ -11176,7 +11188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
   m_CategoryHash: 0.000000016854184
-  m_labelHash: 0.0039833337
+  m_labelHash: 5.3134536e-17
   m_SpriteKey: 0
   m_SpriteHash: 19424851
 --- !u!114 &674927337
@@ -11209,6 +11221,19 @@ MonoBehaviour:
   hitboxDown: {fileID: 96367406}
   hitboxLeft: {fileID: 738408203}
   hitboxRight: {fileID: 742731246}
+--- !u!114 &674927349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335424280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e64fac96c38464081275aa9354437b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageSource
+  damage: 5
 --- !u!1 &679936694
 GameObject:
   m_ObjectHideFlags: 0
@@ -17826,7 +17851,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b77a52343790849b7fcd075d53af54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
-  damage: 1
 --- !u!1 &742731244
 GameObject:
   m_ObjectHideFlags: 0
@@ -17928,7 +17952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b77a52343790849b7fcd075d53af54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
-  damage: 1
 --- !u!1 &832867473
 GameObject:
   m_ObjectHideFlags: 0
@@ -18029,7 +18052,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b77a52343790849b7fcd075d53af54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
-  damage: 1
 --- !u!1 &1093254747
 GameObject:
   m_ObjectHideFlags: 0
@@ -18202,6 +18224,49 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1379209183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7220173918255507538, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
+  m_PrefabInstance: {fileID: 577216413}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1379209189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379209183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23549f5b98c51904aab5ed3705b5066b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 50
+--- !u!114 &1379209190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379209183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47ac0723eb77dc4b9df2f0e7175326a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &1379209191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379209183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da10d752bc6ff14c8450cffbf8e55e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitFlashShader
+  flashTime: 0.1
 --- !u!1 &1509906770
 GameObject:
   m_ObjectHideFlags: 0
@@ -29172,6 +29237,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7220173918255507538, guid: d17e90559a18f4148a21647faf905c37, type: 3}
       insertIndex: -1
       addedObject: {fileID: 674927343}
+    - targetCorrespondingSourceObject: {fileID: 7220173918255507538, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 674927349}
   m_SourcePrefab: {fileID: 100100000, guid: d17e90559a18f4148a21647faf905c37, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

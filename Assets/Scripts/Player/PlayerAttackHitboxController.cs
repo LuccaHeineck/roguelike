@@ -26,7 +26,7 @@ public class PlayerAttackHitboxController : MonoBehaviour
     {
         DisableAll();
 
-        Debug.Log(Time.frameCount + " Hitbox ON");
+        // Debug.Log(Time.frameCount + " Hitbox ON");
 
         if (attackDirection.y > 0)
             hitboxUp.enabled = true;
@@ -40,7 +40,7 @@ public class PlayerAttackHitboxController : MonoBehaviour
 
     public void DisableHitbox()
     {
-        Debug.Log(Time.frameCount + " Hitbox OFF");
+        // Debug.Log(Time.frameCount + " Hitbox OFF");
         DisableAll();
     }
 }

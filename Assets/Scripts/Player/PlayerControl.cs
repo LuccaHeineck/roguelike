@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
     public Vector2 LastMoveInput { get; private set; }
     public StateMachine StateMachine { get; private set; }
     public bool AttackPressed { get; private set; }
+    public Health health;
 
 
     void Start()
