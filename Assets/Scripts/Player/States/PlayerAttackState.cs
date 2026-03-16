@@ -3,6 +3,8 @@ using UnityEngine;
 public class PlayerAttackState : IState
 {
     private PlayerControl player;
+    private PlayerAttackHitboxController hitboxController;
+
     private float timer;
     private const float attackDuration = 0.54f;
 
@@ -14,13 +16,17 @@ public class PlayerAttackState : IState
     {
         this.player = player;
         this.comboStep = step;
+        hitboxController = player.GetComponent<PlayerAttackHitboxController>();
     }
 
     public void Enter()
     {
         comboQueued = false;
         timer = 0f;
+
         player.Rb.linearVelocity = Vector2.zero;
+
+        hitboxController.SetDirection(player.LastMoveInput);
 
         player.Animator.SetFloat("lastInputX", player.LastMoveInput.x);
         player.Animator.SetFloat("lastInputY", player.LastMoveInput.y);
