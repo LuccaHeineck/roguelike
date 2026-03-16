@@ -20,6 +20,10 @@ public class Health : MonoBehaviour
 
         CurrentHealth -= damage;
 
+        HitFlashShader flash = GetComponent<HitFlashShader>();
+        if (flash != null)
+            flash.Flash();
+
         if (CurrentHealth <= 0)
             Die();
     }
