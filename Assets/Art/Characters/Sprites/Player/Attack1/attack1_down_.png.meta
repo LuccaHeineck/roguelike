@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: 32c1b0dda4888af4ab824590ef15f5dc
+guid: 0f3c0a7cec451c74886bfbe46afa17c3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3681601231273768170
-    second: attack1_down_0
+      213: -2653248807292625469
+    second: attack1_down__0
   - first:
-      213: 3584074213190335047
-    second: attack1_down_1
+      213: 1608688709914298109
+    second: attack1_down__1
   - first:
-      213: -3827612124789016935
-    second: attack1_down_2
+      213: 5905712094928808701
+    second: attack1_down__2
   - first:
-      213: -5815401166681578304
-    second: attack1_down_3
+      213: 9062512530733747625
+    second: attack1_down__3
   - first:
-      213: 1952650149894899558
-    second: attack1_down_4
+      213: 9162475037946458997
+    second: attack1_down__4
   - first:
-      213: 4417006001543893205
-    second: attack1_down_5
+      213: 1550224658380013020
+    second: attack1_down__5
   - first:
-      213: 4639868444950340380
-    second: attack1_down_6
+      213: -9009304217882665786
+    second: attack1_down__6
   - first:
-      213: 1429595638389755591
-    second: attack1_down_7
+      213: -8102799207493150874
+    second: attack1_down__7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -134,7 +134,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: attack1_down_0
+      name: attack1_down__0
       rect:
         serializedVersion: 2
         x: 0
@@ -149,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae4b6ba50dca71330800000000000000
-      internalID: 3681601231273768170
+      spriteID: 3cd189c6444cd2bd0800000000000000
+      internalID: -2653248807292625469
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack1_down_1
+      name: attack1_down__1
       rect:
         serializedVersion: 2
         x: 96
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 74af8d5f1803db130800000000000000
-      internalID: 3584074213190335047
+      spriteID: df68f94cbd5335610800000000000000
+      internalID: 1608688709914298109
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack1_down_2
+      name: attack1_down__2
       rect:
         serializedVersion: 2
         x: 192
@@ -193,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 996f8f35d0791eac0800000000000000
-      internalID: -3827612124789016935
+      spriteID: dfaa5fb4cdd45f150800000000000000
+      internalID: 5905712094928808701
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack1_down_3
+      name: attack1_down__3
       rect:
         serializedVersion: 2
         x: 288
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0c46d81437b8b4fa0800000000000000
-      internalID: -5815401166681578304
+      spriteID: 9ad49e6a12384cd70800000000000000
+      internalID: 9062512530733747625
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack1_down_4
+      name: attack1_down__4
       rect:
         serializedVersion: 2
         x: 384
@@ -237,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 667491b37f4391b10800000000000000
-      internalID: 1952650149894899558
+      spriteID: 573be2c8086a72f70800000000000000
+      internalID: 9162475037946458997
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack1_down_5
+      name: attack1_down__5
       rect:
         serializedVersion: 2
         x: 480
@@ -259,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5d0dacc5e8b5c4d30800000000000000
-      internalID: 4417006001543893205
+      spriteID: cddbac40d11838510800000000000000
+      internalID: 1550224658380013020
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack1_down_6
+      name: attack1_down__6
       rect:
         serializedVersion: 2
         x: 576
@@ -281,14 +281,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c132fc184cf146040800000000000000
-      internalID: 4639868444950340380
+      spriteID: 6ccdca31c8588f280800000000000000
+      internalID: -9009304217882665786
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack1_down_7
+      name: attack1_down__7
       rect:
         serializedVersion: 2
         x: 672
@@ -303,8 +303,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7ce4ba6a8a1f6d310800000000000000
-      internalID: 1429595638389755591
+      spriteID: 667dd0f1d031d8f80800000000000000
+      internalID: -8102799207493150874
       vertices: []
       indices: 
       edges: []
@@ -313,7 +313,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d8e7c13b86649b145a2e8917c95fb637
+    spriteID: d948d8ee10d8e6743b11ff1a5b9aa8e8
     internalID: 0
     vertices: []
     indices: 
@@ -325,14 +325,14 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":1.0},"gridSpriteSize":{"x":96.0,"y":80.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      attack1_down_0: 3681601231273768170
-      attack1_down_1: 3584074213190335047
-      attack1_down_2: -3827612124789016935
-      attack1_down_3: -5815401166681578304
-      attack1_down_4: 1952650149894899558
-      attack1_down_5: 4417006001543893205
-      attack1_down_6: 4639868444950340380
-      attack1_down_7: 1429595638389755591
+      attack1_down__0: -2653248807292625469
+      attack1_down__1: 1608688709914298109
+      attack1_down__2: 5905712094928808701
+      attack1_down__3: 9062512530733747625
+      attack1_down__4: 9162475037946458997
+      attack1_down__5: 1550224658380013020
+      attack1_down__6: -9009304217882665786
+      attack1_down__7: -8102799207493150874
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
