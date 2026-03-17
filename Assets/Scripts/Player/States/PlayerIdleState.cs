@@ -16,6 +16,13 @@ public class PlayerIdleState : IState
 
     public void Update()
     {
+        if (player.DashPressed)
+        {
+            player.ConsumeDash();
+            player.StateMachine.ChangeState(new PlayerDashState(player));
+            return;
+        }
+
         if (player.AttackPressed)
         {
             player.ConsumeAttack();

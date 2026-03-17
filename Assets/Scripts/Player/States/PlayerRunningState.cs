@@ -17,6 +17,13 @@ public class PlayerRunningState : IState
         player.Animator.SetFloat("InputX", player.MoveInput.x);
         player.Animator.SetFloat("InputY", player.MoveInput.y);
 
+        if (player.DashPressed)
+        {
+            player.ConsumeDash();
+            player.StateMachine.ChangeState(new PlayerDashState(player));
+            return;
+        }
+
         if (player.AttackPressed)
         {
             player.ConsumeAttack();

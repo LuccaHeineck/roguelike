@@ -28508,6 +28508,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 25
+--- !u!114 &1955027369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3616381809683050737, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+  m_PrefabInstance: {fileID: 7270877572294805047}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955027350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e91426bf9d6c846a76b8add64919d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
 --- !u!1 &1989639560
 GameObject:
   m_ObjectHideFlags: 3
@@ -28604,6 +28615,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1975646896462483760, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975646896462483760, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975646896462483760, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1955027369}
+    - target: {fileID: 1975646896462483760, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975646896462483760, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Dash
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975646896462483760, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerControl, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975646896462483760, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3616381809683050737, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+      propertyPath: dashSpeed
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3616381809683050737, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+      propertyPath: dashDistance
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7220173918255507538, guid: d17e90559a18f4148a21647faf905c37, type: 3}
       propertyPath: m_Name
       value: Player

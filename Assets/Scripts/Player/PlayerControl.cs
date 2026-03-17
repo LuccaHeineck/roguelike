@@ -4,14 +4,19 @@ using UnityEngine.InputSystem;
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private float movSpeed = 5f;
+    [SerializeField] private float dashDistance = 15f;
+    [SerializeField] private float dashDuration = 0.15f;
 
     public float MovSpeed => movSpeed;
+    public float DashDistance => dashDistance;
+    public float DashDuration => dashDuration;
     public Rigidbody2D Rb { get; private set; }
     public Animator Animator { get; private set; }
     public Vector2 MoveInput { get; private set; }
     public Vector2 LastMoveInput { get; private set; }
     public StateMachine StateMachine { get; private set; }
     public bool AttackPressed { get; private set; }
+    public bool DashPressed { get; private set; }
     public Health health;
 
 
@@ -43,5 +48,12 @@ public class PlayerControl : MonoBehaviour
             AttackPressed = true;
     }
 
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            DashPressed = true;
+    }
+
     public void ConsumeAttack() => AttackPressed = false;
+    public void ConsumeDash() => DashPressed = false;
 }
