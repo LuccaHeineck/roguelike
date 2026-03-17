@@ -11,10 +11,13 @@ public class DamageDealer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Hit something: " + other.name);
         // Previne o personagem de se atacar
         if (other.transform.root == transform.root) return;
 
-        Health health = other.GetComponent<Health>();
+        if (!other.CompareTag("Hurtbox")) return;
+
+        Health health = other.GetComponentInParent<Health>();
 
         if (health != null)
         {
