@@ -10934,53 +10934,6 @@ Transform:
   - {fileID: 1989639561}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &297354744 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7220173918255507538, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
-  m_PrefabInstance: {fileID: 577216413}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &348870164 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3632667398349131076, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
-  m_PrefabInstance: {fileID: 577216413}
-  m_PrefabAsset: {fileID: 0}
---- !u!70 &348870166
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348870164}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.4, y: 1}
-  m_Direction: 1
 --- !u!1 &488194872
 GameObject:
   m_ObjectHideFlags: 0
@@ -11034,6 +10987,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2363680160470372626, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7220173918255507538, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
       propertyPath: m_Name
       value: Slime
@@ -11079,30 +11036,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 1181638662745226623, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
+    - {fileID: 3499056974259084063, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7220173918255507538, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
-      insertIndex: 8
-      addedObject: {fileID: 634155588}
-    - targetCorrespondingSourceObject: {fileID: 3632667398349131076, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 348870166}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
---- !u!114 &634155588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297354744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00e64fac96c38464081275aa9354437b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DamageSource
-  damage: 3
 --- !u!4 &674927329 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8130280897739518581, guid: d17e90559a18f4148a21647faf905c37, type: 3}

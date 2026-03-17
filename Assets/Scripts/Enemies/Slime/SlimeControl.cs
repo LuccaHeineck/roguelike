@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
-public class EnemyControl : MonoBehaviour
+public class SlimeControl : MonoBehaviour
 {
     [SerializeField] private float walkMoveSpeed = 4f;
     [SerializeField] private float chaseMoveSpeed = 8f;
+    public Vector2 MoveDirection { get; private set; }
+    public Vector2 LastMoveDirection { get; private set; }
     public Rigidbody2D Rb { get; private set; }
     public Animator Animator { get; private set; }
     public StateMachine StateMachine { get; private set; }
@@ -14,13 +17,20 @@ public class EnemyControl : MonoBehaviour
         Rb = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
 
+        LastMoveDirection = new Vector2(0, -1);
+
         StateMachine = new StateMachine();
-        //StateMachine.ChangeState(new SlimeIdleState(this));
+        StateMachine.ChangeState(new SlimeIdleState(this));
     }
 
     private void Awake()
     {
         health = GetComponent<Health>();
+    }
+
+    void Update()
+    {
+        StateMachine.Update();
     }
 
     private void OnEnable()
@@ -35,6 +45,7 @@ public class EnemyControl : MonoBehaviour
 
     private void Die()
     {
+        //StateMachine.CurrentState(new SlimeDeadState(this));
         Destroy(gameObject);
     }
 }
