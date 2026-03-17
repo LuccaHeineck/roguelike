@@ -10,12 +10,16 @@ public class SlimeControl : MonoBehaviour
     public Rigidbody2D Rb { get; private set; }
     public Animator Animator { get; private set; }
     public StateMachine StateMachine { get; private set; }
+    public BoxCollider2D BoxCollider { get; private set; }
     private Health health;
+    public bool colliding;
 
     void Start()
     {
         Rb = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
+        Animator.SetBool("isDead", false);
+        BoxCollider = GetComponent<BoxCollider2D>();
 
         LastMoveDirection = new Vector2(0, -1);
 
@@ -26,11 +30,18 @@ public class SlimeControl : MonoBehaviour
     private void Awake()
     {
         health = GetComponent<Health>();
+        colliding = false;
     }
 
     void Update()
     {
         StateMachine.Update();
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("wall"))
+            colliding = true;
     }
 
     private void OnEnable()
