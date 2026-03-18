@@ -12,12 +12,11 @@ public class SlimeDeadState : IState
 
     public void Enter()
     {
-        slime.Rb.linearVelocity = Vector2.zero;
         slime.Animator.SetBool("isDead", true);
         slime.Animator.SetBool("isWalking", false);
         slime.Animator.SetBool("isChasing", false);
-        slime.Animator.SetBool("takingDamage", false);
 
+        slime.Rb.linearVelocity = Vector2.zero;
         timer = 0;
     }
 

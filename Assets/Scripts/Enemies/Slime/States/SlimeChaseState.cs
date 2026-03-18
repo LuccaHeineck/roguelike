@@ -15,7 +15,7 @@ public class SlimeChaseState : IState
     public void Enter()
     {
         slime.Animator.SetBool("isWalking", false);
-        slime.Animator.SetBool("isChasing", true);
+
         slime.agent.speed = slime.chaseMoveSpeed;
         slime.agent.SetDestination(slime.player.position);
     }
@@ -35,7 +35,7 @@ public class SlimeChaseState : IState
         if (slime.CanSeePlayer())
             slime.agent.SetDestination(slime.player.position);
         else
-            slime.StateMachine.ChangeState(new SlimeIdleState(slime));
+            slime.StartIdle();
     }
 
     public void Exit() { }

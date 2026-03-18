@@ -11,25 +11,28 @@ public class SlimeIdleState : IState
 
     public void Enter()
     {
-        slime.Rb.linearVelocity = Vector2.zero;
         slime.Animator.SetBool("isWalking", false);
         slime.Animator.SetBool("isChasing", false);
-        slime.Animator.SetBool("takingDamage", false);
 
+        slime.agent.speed = 0f;
         timer = 0;
     }
 
     public void Update()
     {
         if (slime.CanSeePlayer())
-            slime.StateMachine.ChangeState(new SlimeChaseState(slime));
+        {
+            slime.Animator.SetBool("isChasing", true);
+            slime.StartChase();
+            return;
+        }
 
         timer += Time.deltaTime;
 
         if (timer >= idleDuration)
         {
             slime.Animator.SetBool("isWalking", true);
-            slime.StateMachine.ChangeState(new SlimeWalkState(slime));
+            slime.StartWalk();
         }
 
     }

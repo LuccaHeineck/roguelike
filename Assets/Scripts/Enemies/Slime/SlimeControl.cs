@@ -16,7 +16,8 @@ public class SlimeControl : MonoBehaviour
     public Transform[] patrolPoints;
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public int currentPointIndex;
-    [SerializeField] private float detectionRange = 6f;
+    public float detectionRange = 6f;
+    public float chasingRange = 10f;
     private Health health;
 
     private void Awake()
@@ -42,6 +43,30 @@ public class SlimeControl : MonoBehaviour
     void Update()
     {
         StateMachine.Update();
+    }
+
+    public void StartIdle()
+    {
+        StateMachine.ChangeState(new SlimeIdleState(this));
+    }
+
+    public void StartWalk()
+    {
+        StateMachine.ChangeState(new SlimeWalkState(this));
+    }
+
+    public void StartChase()
+    {
+        StateMachine.ChangeState(new SlimeChaseState(this));
+    }
+
+    public void StartHurt()
+    {
+        StateMachine.ChangeState(new SlimeHurtState(this));
+    }
+    public void Die()
+    {
+        StateMachine.ChangeState(new SlimeDeadState(this));
     }
 
     public bool CanSeePlayer()
@@ -87,8 +112,4 @@ public class SlimeControl : MonoBehaviour
         health.OnDeath -= Die;
     }
 
-    public void Die()
-    {
-        StateMachine.ChangeState(new SlimeDeadState(this));
-    }
 }
