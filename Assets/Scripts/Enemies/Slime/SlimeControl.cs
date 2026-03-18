@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Scripting.APIUpdating;
@@ -86,9 +87,8 @@ public class SlimeControl : MonoBehaviour
         health.OnDeath -= Die;
     }
 
-    private void Die()
+    public void Die()
     {
-        //StateMachine.CurrentState(new SlimeDeadState(this));
-        Destroy(gameObject);
+        StateMachine.ChangeState(new SlimeDeadState(this));
     }
 }
