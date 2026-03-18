@@ -49,16 +49,19 @@ public class PlayerAttackState : IState
         {
             if (comboQueued && comboStep < maxComboStep - 1)
             {
-                player.StateMachine.ChangeState(new PlayerAttackState(player, comboStep + 1));
+                comboStep++;
+                player.StateMachine.ChangeState(player.AttackState);
                 return;
             }
 
             if (player.MoveInput != Vector2.zero)
-                player.StateMachine.ChangeState(new PlayerRunningState(player));
+                player.StartRun();
             else
-                player.StateMachine.ChangeState(new PlayerIdleState(player));
+                player.StartIdle();
         }
     }
 
     public void Exit() => player.ConsumeAttack();
+
+    public void ResetCombo() => comboStep = 0;
 }

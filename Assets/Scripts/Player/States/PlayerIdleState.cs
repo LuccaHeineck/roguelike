@@ -18,20 +18,18 @@ public class PlayerIdleState : IState
     {
         if (player.DashPressed)
         {
-            player.ConsumeDash();
-            player.StateMachine.ChangeState(new PlayerDashState(player));
+            player.StartDash();
             return;
         }
 
         if (player.AttackPressed)
         {
-            player.ConsumeAttack();
-            player.StateMachine.ChangeState(new PlayerAttackState(player));
+            player.StartAttack();
             return;
         }
 
         if (player.MoveInput != Vector2.zero)
-            player.StateMachine.ChangeState(new PlayerRunningState(player));
+            player.StartRun();
     }
 
     public void Exit() { }

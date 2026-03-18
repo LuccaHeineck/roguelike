@@ -21,14 +21,27 @@ public class PlayerControl : MonoBehaviour
     public float LastDashAt { get; private set; }
     public float DashCooldown { get; private set; } = 0.5f;
 
+    public PlayerIdleState IdleState { get; private set; }
+    public PlayerRunState RunState { get; private set; }
+    public PlayerAttackState AttackState { get; private set; }
+    public PlayerDashState DashState { get; private set; }
+
+    void Awake()
+    {
+        StateMachine = new StateMachine();
+
+        IdleState = new PlayerIdleState(this);
+        RunState = new PlayerRunState(this);
+        AttackState = new PlayerAttackState(this);
+        DashState = new PlayerDashState(this);
+    }
 
     void Start()
     {
         Rb = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
 
-        StateMachine = new StateMachine();
-        StateMachine.ChangeState(new PlayerIdleState(this));
+        StateMachine.ChangeState(IdleState);
     }
 
     void Update()
@@ -57,6 +70,29 @@ public class PlayerControl : MonoBehaviour
     }
 
     public void RegisterDashEnd() { LastDashAt = Time.time; }
+
+    public void StartIdle()
+    {
+        StateMachine.ChangeState(IdleState);
+    }
+
+    public void StartRun()
+    {
+        StateMachine.ChangeState(RunState);
+    }
+
+    public void StartAttack()
+    {
+        ConsumeAttack();
+        AttackState.ResetCombo();
+        StateMachine.ChangeState(AttackState);
+    }
+
+    public void StartDash()
+    {
+        ConsumeDash();
+        StateMachine.ChangeState(DashState);
+    }
 
     public void ConsumeAttack() => AttackPressed = false;
 

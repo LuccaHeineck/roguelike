@@ -26,7 +26,7 @@ public class PlayerDashState : IState
         if (timer >= player.DashDuration)
         {
             timer = 0f;
-            player.StateMachine.ChangeState(new PlayerIdleState(player));
+            player.StartIdle();
             return;
         }
 
