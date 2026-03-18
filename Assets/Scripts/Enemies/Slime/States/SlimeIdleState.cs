@@ -21,6 +21,9 @@ public class SlimeIdleState : IState
 
     public void Update()
     {
+        if (slime.CanSeePlayer())
+            slime.StateMachine.ChangeState(new SlimeChaseState(slime));
+
         timer += Time.deltaTime;
 
         if (timer >= idleDuration)

@@ -45,6 +45,12 @@ TagManager:
   - name: chao
     uniqueID: 2307893291
     locked: 0
+  - name: player
+    uniqueID: 2269938951
+    locked: 0
+  - name: slimes
+    uniqueID: 500394829
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

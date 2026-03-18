@@ -15,12 +15,16 @@ public class SlimeWalkState : IState
     public void Enter()
     {
         slime.Animator.SetBool("isWalking", true);
+        slime.Animator.SetBool("isChasing", false);
         slime.agent.speed = slime.walkMoveSpeed;
         slime.agent.SetDestination(slime.patrolPoints[slime.currentPointIndex].position);
     }
 
     public void Update()
     {
+        if (slime.CanSeePlayer())
+            slime.StateMachine.ChangeState(new SlimeChaseState(slime));
+
         if (slime.agent.velocity.magnitude > 0.1f)
         {
             Vector2 direction = slime.agent.velocity.normalized;

@@ -4,6 +4,7 @@ using UnityEngine.Scripting.APIUpdating;
 
 public class SlimeControl : MonoBehaviour
 {
+    public Transform player;
     public float walkMoveSpeed = 3f;
     public float chaseMoveSpeed = 7f;
     public Vector2 MoveDirection { get; private set; }
@@ -11,9 +12,10 @@ public class SlimeControl : MonoBehaviour
     public Animator Animator { get; private set; }
     public StateMachine StateMachine { get; private set; }
     public BoxCollider2D BoxCollider { get; private set; }
+    public Transform[] patrolPoints;
     [HideInInspector] public NavMeshAgent agent;
-    [SerializeField] public Transform[] patrolPoints;
     [HideInInspector] public int currentPointIndex;
+    [SerializeField] private float detectionRange = 6f;
     private Health health;
 
     private void Awake()
@@ -41,6 +43,38 @@ public class SlimeControl : MonoBehaviour
         StateMachine.Update();
     }
 
+    public bool CanSeePlayer()
+    {
+        NavMeshPath path = new NavMeshPath();
+
+        if (DoesPathExist(path))
+            if (PathLenght(path) != -1f)
+                return true;
+        return false;
+    }
+
+    public bool DoesPathExist(NavMeshPath path)
+    {
+        if (agent.CalculatePath(player.position, path))
+            if (path.status == NavMeshPathStatus.PathComplete)
+                return true;
+        return false;
+    }
+
+    public float PathLenght(NavMeshPath path)
+    {
+        float pathDistanceAcc = 0f;
+
+        for (int i = 0; i < path.corners.Length - 1; i++)
+        {
+            pathDistanceAcc += Vector3.Distance(path.corners[i], path.corners[i + 1]);
+
+            if (pathDistanceAcc > detectionRange)
+                return -1f;
+        }
+
+        return pathDistanceAcc;
+    }
 
     private void OnEnable()
     {

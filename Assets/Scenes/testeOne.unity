@@ -10927,7 +10927,7 @@ Transform:
   m_GameObject: {fileID: 295972591}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0.94, z: -10}
+  m_LocalPosition: {x: 3.61, y: -8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10989,12 +10989,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1877721898610270353, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 674927329}
+    - target: {fileID: 1877721898610270353, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
       propertyPath: walkMoveSpeed
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1877721898610270353, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
       propertyPath: chaseMoveSpeed
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877721898610270353, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
+      propertyPath: detectionRange
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1877721898610270353, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
       propertyPath: patrolPoints.Array.size
@@ -11022,11 +11030,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8130280897739518581, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.45
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 8130280897739518581, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.71
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: 8130280897739518581, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11059,6 +11067,14 @@ PrefabInstance:
     - target: {fileID: 8130280897739518581, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973892786588399178, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973892786588399178, guid: 25f98930fa0750c4699cb1942da43133, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 500394829
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11152,7 +11168,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1855781859
-  m_SortingLayer: -2
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -17855,7 +17871,7 @@ Transform:
   m_GameObject: {fileID: 1093254747}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0.94, z: -10}
+  m_LocalPosition: {x: 3.61, y: -8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29152,7 +29168,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1987074005
-  m_SortingLayer: -1
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -30591,11 +30607,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8130280897739518581, guid: d17e90559a18f4148a21647faf905c37, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.02
+      value: 3.61
       objectReference: {fileID: 0}
     - target: {fileID: 8130280897739518581, guid: d17e90559a18f4148a21647faf905c37, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.94
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 8130280897739518581, guid: d17e90559a18f4148a21647faf905c37, type: 3}
       propertyPath: m_LocalPosition.z
