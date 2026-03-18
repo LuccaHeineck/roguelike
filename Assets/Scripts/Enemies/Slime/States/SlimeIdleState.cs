@@ -1,8 +1,11 @@
+using System.Threading;
 using UnityEngine;
 
 public class SlimeIdleState : IState
 {
     private SlimeControl slime;
+    private const float idleDuration = 5f;
+    private float timer;
 
     public SlimeIdleState(SlimeControl slime) => this.slime = slime;
 
@@ -13,12 +16,19 @@ public class SlimeIdleState : IState
         slime.Animator.SetBool("isChasing", false);
         slime.Animator.SetBool("takingDamage", false);
 
-        slime.Animator.SetFloat("lastInputX", slime.MoveDirection.x);
-        slime.Animator.SetFloat("lastInputY", slime.MoveDirection.y);
+        timer = 0;
     }
 
     public void Update()
     {
+        timer += Time.deltaTime;
+
+        if (timer >= idleDuration)
+        {
+            slime.Animator.SetBool("isWalking", true);
+            slime.StateMachine.ChangeState(new SlimeWalkState(slime));
+        }
+
     }
 
     public void Exit() { }
