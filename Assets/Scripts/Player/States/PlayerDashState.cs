@@ -32,5 +32,8 @@ public class PlayerDashState : IState
 
     }
 
-    public void Exit() { }
+    public void Exit()
+    {
+        player.RegisterDashEnd();
+    }
 }

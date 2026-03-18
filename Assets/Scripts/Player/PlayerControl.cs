@@ -15,9 +15,11 @@ public class PlayerControl : MonoBehaviour
     public Vector2 MoveInput { get; private set; }
     public Vector2 LastMoveInput { get; private set; }
     public StateMachine StateMachine { get; private set; }
+    public Health Health { get; private set; }
     public bool AttackPressed { get; private set; }
     public bool DashPressed { get; private set; }
-    public Health health;
+    public float LastDashAt { get; private set; }
+    public float DashCooldown { get; private set; } = 0.5f;
 
 
     void Start()
@@ -50,10 +52,13 @@ public class PlayerControl : MonoBehaviour
 
     public void Dash(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && (Time.time - LastDashAt > DashCooldown))
             DashPressed = true;
     }
 
+    public void RegisterDashEnd() { LastDashAt = Time.time; }
+
     public void ConsumeAttack() => AttackPressed = false;
+
     public void ConsumeDash() => DashPressed = false;
 }
