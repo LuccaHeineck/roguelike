@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1758743213139409344}
   - component: {fileID: 4534072169548285112}
   - component: {fileID: 4730570957895139189}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1965686905482588052}
   - component: {fileID: 2908665803602048119}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Hurtbox
   m_TagString: Hurtbox
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 6121378230187879743}
   - component: {fileID: 24079950380958629}
   - component: {fileID: 2155014274791773937}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +353,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   currentPointIndex: 0
   attackHitbox: {fileID: 4534072169548285112}
-  detectionRange: 6
+  detectionRange: 8
   chasingRange: 10
   isAttacking: 0
 --- !u!114 &4691016095821019295
@@ -416,4 +416,4 @@ NavMeshAgent:
   m_Height: 4
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
