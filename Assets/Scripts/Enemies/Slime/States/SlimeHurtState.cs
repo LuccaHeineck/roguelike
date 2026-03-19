@@ -12,8 +12,6 @@ public class SlimeHurtState : IState
 
     public void Enter()
     {
-        slime.Animator.SetBool("isWalking", false);
-        slime.Animator.SetBool("isChasing", false);
         slime.Animator.SetTrigger("takingDamage");
 
         slime.agent.speed = 0f;
@@ -28,15 +26,17 @@ public class SlimeHurtState : IState
         {
             if (slime.CanSeePlayer())
             {
-                slime.Animator.SetBool("isChasing", true);
                 slime.StartChase();
                 return;
             }
-            else
-                slime.StartIdle();
+            slime.StartIdle();
         }
 
     }
 
-    public void Exit() { }
+    public void Exit()
+    {
+        slime.Animator.SetBool("isWalking", false);
+        slime.Animator.SetBool("isChasing", false);
+    }
 }

@@ -16,8 +16,10 @@ public class SlimeControl : MonoBehaviour
     public Transform[] patrolPoints;
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public int currentPointIndex;
+    public CircleCollider2D attackHitbox;
     public float detectionRange = 6f;
     public float chasingRange = 10f;
+    [HideInInspector] public bool isAttacking = false;
     private Health health;
 
     private void Awake()
@@ -59,14 +61,34 @@ public class SlimeControl : MonoBehaviour
     {
         StateMachine.ChangeState(new SlimeChaseState(this));
     }
+    public void StartAttack()
+    {
+        StateMachine.ChangeState(new SlimeAttackState(this));
+    }
 
     public void StartHurt()
     {
-        StateMachine.ChangeState(new SlimeHurtState(this));
+        if (!isAttacking)
+            StateMachine.ChangeState(new SlimeHurtState(this));
     }
+
     public void Die()
     {
         StateMachine.ChangeState(new SlimeDeadState(this));
+    }
+
+    private void EnableHitbox() => attackHitbox.enabled = true;
+    private void DisableHitbox() => attackHitbox.enabled = false;
+
+    public bool CloseToPlayer()
+    {
+        float distance = Vector2.Distance(player.transform.position, this.transform.position);
+
+        if (distance <= 0.5 * attackHitbox.radius)
+        {
+            return true;
+        }
+        return false;
     }
 
     public bool CanSeePlayer()
@@ -105,11 +127,12 @@ public class SlimeControl : MonoBehaviour
     private void OnEnable()
     {
         health.OnDeath += Die;
+        health.OnDamage += StartHurt;
     }
 
     private void OnDisable()
     {
         health.OnDeath -= Die;
+        health.OnDamage -= StartHurt;
     }
-
 }

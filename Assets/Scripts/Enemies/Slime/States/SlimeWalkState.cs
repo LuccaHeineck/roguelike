@@ -14,7 +14,7 @@ public class SlimeWalkState : IState
 
     public void Enter()
     {
-        slime.Animator.SetBool("isChasing", false);
+        slime.Animator.SetBool("isWalking", true);
 
         slime.agent.speed = slime.walkMoveSpeed;
         slime.agent.SetDestination(slime.patrolPoints[slime.currentPointIndex].position);
@@ -22,6 +22,12 @@ public class SlimeWalkState : IState
 
     public void Update()
     {
+        if (slime.CloseToPlayer())
+        {
+            slime.StartAttack();
+            return;
+        }
+
         if (slime.CanSeePlayer())
             slime.StartChase();
 
@@ -45,5 +51,9 @@ public class SlimeWalkState : IState
         }
     }
 
-    public void Exit() { }
+    public void Exit()
+    {
+        slime.Animator.SetBool("isWalking", false);
+        slime.Animator.SetBool("isChasing", false);
+    }
 }

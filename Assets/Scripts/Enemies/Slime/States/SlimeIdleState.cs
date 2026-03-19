@@ -11,18 +11,21 @@ public class SlimeIdleState : IState
 
     public void Enter()
     {
-        slime.Animator.SetBool("isWalking", false);
-        slime.Animator.SetBool("isChasing", false);
-
         slime.agent.speed = 0f;
         timer = 0;
     }
 
     public void Update()
     {
+        if (slime.CloseToPlayer())
+        {
+            Debug.Log(" Esta perto do player! ");
+            slime.StartAttack();
+            return;
+        }
+
         if (slime.CanSeePlayer())
         {
-            slime.Animator.SetBool("isChasing", true);
             slime.StartChase();
             return;
         }
@@ -31,11 +34,15 @@ public class SlimeIdleState : IState
 
         if (timer >= idleDuration)
         {
-            slime.Animator.SetBool("isWalking", true);
             slime.StartWalk();
+            return;
         }
 
     }
 
-    public void Exit() { }
+    public void Exit()
+    {
+        slime.Animator.SetBool("isWalking", false);
+        slime.Animator.SetBool("isChasing", false);
+    }
 }

@@ -11,7 +11,7 @@ public class DamageDealer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Hit something: " + other.name);
+        //Debug.Log("Hit something: " + other.name);
         // Previne o personagem de se atacar
         if (other.transform.root == transform.root) return;
 
@@ -21,7 +21,7 @@ public class DamageDealer : MonoBehaviour
 
         if (health != null)
         {
-            Debug.Log("damage: " + damageSource.Damage);
+            //Debug.Log("damage: " + damageSource.Damage);
             health.TakeDamage(damageSource.Damage);
         }
     }
