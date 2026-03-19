@@ -72,11 +72,6 @@ public class SlimeControl : MonoBehaviour
             StateMachine.ChangeState(new SlimeHurtState(this));
     }
 
-    public void Die()
-    {
-        StateMachine.ChangeState(new SlimeDeadState(this));
-    }
-
     private void EnableHitbox() => attackHitbox.enabled = true;
     private void DisableHitbox() => attackHitbox.enabled = false;
 
@@ -135,4 +130,11 @@ public class SlimeControl : MonoBehaviour
         health.OnDeath -= Die;
         health.OnDamage -= StartHurt;
     }
+
+    public void Die()
+    {
+        StateMachine.ChangeState(new SlimeDeadState(this));
+    }
+
+    public void DestroySlime() => Destroy(gameObject, 0.5f);
 }
