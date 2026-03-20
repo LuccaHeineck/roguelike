@@ -15,13 +15,13 @@ public class SlimeAttackState : IState
     public void Enter()
     {
         slime.Animator.SetTrigger("Attacking");
-        slime.isAttacking = true;
+        slime.IsAttacking = true;
 
         timer = 0f;
 
-        slime.agent.velocity = Vector3.zero;
+        slime.Agent.velocity = Vector3.zero;
         slime.Rb.linearVelocity = Vector2.zero;
-        slime.agent.speed = 0f;
+        slime.Agent.speed = 0f;
     }
 
     public void Update()
@@ -36,9 +36,7 @@ public class SlimeAttackState : IState
 
     public void Exit()
     {
-        slime.Animator.SetBool("isWalking", false);
-        slime.Animator.SetBool("isChasing", false);
-        slime.isAttacking = false;
+        slime.IsAttacking = false;
     }
 
 }

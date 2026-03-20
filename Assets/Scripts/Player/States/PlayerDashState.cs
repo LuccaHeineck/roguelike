@@ -12,10 +12,11 @@ public class PlayerDashState : IState
     public void Enter()
     {
         timer = 0f;
+        initialDirection = player.LastMoveInput;
+
         player.Animator.SetBool("isRunning", true);
         player.Animator.SetFloat("lastInputX", player.LastMoveInput.x);
         player.Animator.SetFloat("lastInputY", player.LastMoveInput.y);
-        initialDirection = player.LastMoveInput;
     }
 
     public void Update()
@@ -35,5 +36,6 @@ public class PlayerDashState : IState
     public void Exit()
     {
         player.RegisterDashEnd();
+        player.Animator.SetBool("isRunning", false);
     }
 }

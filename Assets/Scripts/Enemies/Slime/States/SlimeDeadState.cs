@@ -1,5 +1,3 @@
-using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SlimeDeadState : IState
@@ -14,9 +12,10 @@ public class SlimeDeadState : IState
         slime.Rb.linearVelocity = Vector2.zero;
     }
 
-    public void Update()
-    {
-    }
+    public void Update() { }
 
-    public void Exit() { }
+    public void Exit()
+    {
+        slime.Animator.SetBool("isDead", false);
+    }
 }

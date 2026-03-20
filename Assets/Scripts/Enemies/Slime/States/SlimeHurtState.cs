@@ -1,5 +1,3 @@
-using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SlimeHurtState : IState
@@ -14,7 +12,7 @@ public class SlimeHurtState : IState
     {
         slime.Animator.SetTrigger("takingDamage");
 
-        slime.agent.speed = 0f;
+        slime.Agent.speed = 0f;
         timer = 0;
     }
 
@@ -29,14 +27,11 @@ public class SlimeHurtState : IState
                 slime.StartChase();
                 return;
             }
+
             slime.StartIdle();
         }
 
     }
 
-    public void Exit()
-    {
-        slime.Animator.SetBool("isWalking", false);
-        slime.Animator.SetBool("isChasing", false);
-    }
+    public void Exit() { }
 }

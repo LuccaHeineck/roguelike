@@ -14,33 +14,46 @@ public class SlimeControl : MonoBehaviour
     public StateMachine StateMachine { get; private set; }
     public BoxCollider2D BoxCollider { get; private set; }
     public Transform[] patrolPoints;
-    [HideInInspector] public NavMeshAgent agent;
-    [HideInInspector] public int currentPointIndex;
+    public NavMeshAgent Agent { get; private set; }
     public CircleCollider2D attackHitbox;
     public float detectionRange = 6f;
     public float chasingRange = 10f;
-    [HideInInspector] public bool isAttacking = false;
-    private Health health;
+    public Health Health { get; private set; }
+    [HideInInspector] public bool IsAttacking { get; set; }
+    [HideInInspector] public int CurrentPointIndex { get; set; }
+
+    public SlimeIdleState IdleState { get; private set; }
+    public SlimeWalkState WalkState { get; private set; }
+    public SlimeChaseState ChaseState { get; private set; }
+    public SlimeAttackState AttackState { get; private set; }
+    public SlimeHurtState HurtState { get; private set; }
+    public SlimeDeadState DeadState { get; private set; }
 
     private void Awake()
     {
-        health = GetComponent<Health>();
-        agent = GetComponent<NavMeshAgent>();
+        Health = GetComponent<Health>();
+        Agent = GetComponent<NavMeshAgent>();
         Rb = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
         BoxCollider = GetComponent<BoxCollider2D>();
 
         StateMachine = new StateMachine();
+
+        IdleState = new SlimeIdleState(this);
+        WalkState = new SlimeWalkState(this);
+        ChaseState = new SlimeChaseState(this);
+        AttackState = new SlimeAttackState(this);
+        HurtState = new SlimeHurtState(this);
+        DeadState = new SlimeDeadState(this);
     }
     void Start()
     {
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-        currentPointIndex = 0;
+        Agent.updateRotation = false;
+        Agent.updateUpAxis = false;
+        CurrentPointIndex = 0;
 
-        StateMachine.ChangeState(new SlimeIdleState(this));
+        StateMachine.ChangeState(IdleState);
     }
-
 
     void Update()
     {
@@ -49,27 +62,28 @@ public class SlimeControl : MonoBehaviour
 
     public void StartIdle()
     {
-        StateMachine.ChangeState(new SlimeIdleState(this));
+        StateMachine.ChangeState(IdleState);
     }
 
     public void StartWalk()
     {
-        StateMachine.ChangeState(new SlimeWalkState(this));
+        StateMachine.ChangeState(WalkState);
     }
 
     public void StartChase()
     {
-        StateMachine.ChangeState(new SlimeChaseState(this));
+        StateMachine.ChangeState(ChaseState);
     }
+
     public void StartAttack()
     {
-        StateMachine.ChangeState(new SlimeAttackState(this));
+        StateMachine.ChangeState(AttackState);
     }
 
     public void StartHurt()
     {
-        if (!isAttacking)
-            StateMachine.ChangeState(new SlimeHurtState(this));
+        if (!IsAttacking)
+            StateMachine.ChangeState(HurtState);
     }
 
     private void EnableHitbox() => attackHitbox.enabled = true;
@@ -98,7 +112,7 @@ public class SlimeControl : MonoBehaviour
 
     public bool DoesPathExist(NavMeshPath path)
     {
-        if (agent.CalculatePath(player.position, path))
+        if (Agent.CalculatePath(player.position, path))
             if (path.status == NavMeshPathStatus.PathComplete)
                 return true;
         return false;
@@ -121,19 +135,19 @@ public class SlimeControl : MonoBehaviour
 
     private void OnEnable()
     {
-        health.OnDeath += Die;
-        health.OnDamage += StartHurt;
+        Health.OnDeath += Die;
+        Health.OnDamage += StartHurt;
     }
 
     private void OnDisable()
     {
-        health.OnDeath -= Die;
-        health.OnDamage -= StartHurt;
+        Health.OnDeath -= Die;
+        Health.OnDamage -= StartHurt;
     }
 
     public void Die()
     {
-        StateMachine.ChangeState(new SlimeDeadState(this));
+        StateMachine.ChangeState(DeadState);
     }
 
     public void DestroySlime() => Destroy(gameObject, 0.5f);

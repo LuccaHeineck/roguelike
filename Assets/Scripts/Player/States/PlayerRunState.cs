@@ -33,5 +33,8 @@ public class PlayerRunState : IState
             player.StartIdle();
     }
 
-    public void Exit() { }
+    public void Exit()
+    {
+        player.Animator.SetBool("isRunning", false);
+    }
 }

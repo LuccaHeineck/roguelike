@@ -16,15 +16,15 @@ public class SlimeChaseState : IState
     {
         slime.Animator.SetBool("isChasing", true);
 
-        slime.agent.speed = slime.chaseMoveSpeed;
-        slime.agent.SetDestination(slime.player.position);
+        slime.Agent.speed = slime.chaseMoveSpeed;
+        slime.Agent.SetDestination(slime.player.position);
     }
 
     public void Update()
     {
-        if (slime.agent.velocity.magnitude > 0.1f)
+        if (slime.Agent.velocity.magnitude > 0.1f)
         {
-            Vector2 direction = slime.agent.velocity.normalized;
+            Vector2 direction = slime.Agent.velocity.normalized;
 
             slime.Animator.SetFloat("moveDirectionX", direction.x);
             slime.Animator.SetFloat("moveDirectionY", direction.y);
@@ -39,14 +39,13 @@ public class SlimeChaseState : IState
         NavMeshPath path = new NavMeshPath();
 
         if (slime.CanSeePlayer())
-            slime.agent.SetDestination(slime.player.position);
+            slime.Agent.SetDestination(slime.player.position);
         else
             slime.StartIdle();
     }
 
     public void Exit()
     {
-        slime.Animator.SetBool("isWalking", false);
         slime.Animator.SetBool("isChasing", false);
     }
 }

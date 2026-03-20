@@ -1,4 +1,3 @@
-using System.Threading;
 using UnityEngine;
 
 public class SlimeIdleState : IState
@@ -11,7 +10,7 @@ public class SlimeIdleState : IState
 
     public void Enter()
     {
-        slime.agent.speed = 0f;
+        slime.Agent.speed = 0f;
         timer = 0;
     }
 
@@ -19,7 +18,6 @@ public class SlimeIdleState : IState
     {
         if (slime.CloseToPlayer())
         {
-            Debug.Log(" Esta perto do player! ");
             slime.StartAttack();
             return;
         }
@@ -40,9 +38,5 @@ public class SlimeIdleState : IState
 
     }
 
-    public void Exit()
-    {
-        slime.Animator.SetBool("isWalking", false);
-        slime.Animator.SetBool("isChasing", false);
-    }
+    public void Exit() { }
 }
