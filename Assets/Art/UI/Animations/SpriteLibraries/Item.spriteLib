@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrarySourceAsset
+  m_Library:
+  - m_Name: Selector
+    m_Hash: 803504139
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: WithMarker
+      m_Hash: 744545083
+      m_Sprite: {fileID: 4713581911431519990, guid: 8953ede3114cb66428b40de489333ed7, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4713581911431519990, guid: 8953ede3114cb66428b40de489333ed7, type: 3}
+    - m_Name: WithoutMarker
+      m_Hash: 156362005
+      m_Sprite: {fileID: -6550458348112800300, guid: 8953ede3114cb66428b40de489333ed7, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6550458348112800300, guid: 8953ede3114cb66428b40de489333ed7, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 2
+  - m_Name: Slot
+    m_Hash: 205295449
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Backgound
+      m_Hash: 965554992
+      m_Sprite: {fileID: -4319420313742025996, guid: 460d041de21415a4d9e0f81c502b98cc, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4319420313742025996, guid: 460d041de21415a4d9e0f81c502b98cc, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Backgound
+    m_Hash: 965554992
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Border All 12_38
+      m_Hash: 931642944
+      m_Sprite: {fileID: 8274978229246580362, guid: 460d041de21415a4d9e0f81c502b98cc, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8274978229246580362, guid: 460d041de21415a4d9e0f81c502b98cc, type: 3}
+    - m_Name: Deco All 12_38
+      m_Hash: 825369502
+      m_Sprite: {fileID: 397709408470558185, guid: c20da460fa1dc9b4281765575ed6715f, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 397709408470558185, guid: c20da460fa1dc9b4281765575ed6715f, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 2
+  - m_Name: ScrollBar
+    m_Hash: 757494631
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: BackGround
+      m_Hash: 882487990
+      m_Sprite: {fileID: -4319420313742025996, guid: 460d041de21415a4d9e0f81c502b98cc, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4319420313742025996, guid: 460d041de21415a4d9e0f81c502b98cc, type: 3}
+    - m_Name: Handle
+      m_Hash: 371992047
+      m_Sprite: {fileID: -8214763617562953141, guid: 84b4bef79a9afcd4b9de075a8a040839, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8214763617562953141, guid: 84b4bef79a9afcd4b9de075a8a040839, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 2
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 639096247501164418
+  m_Version: 1
