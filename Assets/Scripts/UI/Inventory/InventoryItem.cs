@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
@@ -13,6 +14,7 @@ public class InventoryItem : MonoBehaviour
     [SerializeField] private TMP_Text itemQuantity;
     [SerializeField] private GameObject item;
     private Image itemImage;
+    [HideInDebugUI] public string title, description, effects;
 
     public event Action<InventoryItem>
     OnItemClicked, OnItemRightClicked, OnItemDroppedOn, OnItemBeginDrag, OnItemEndDrag;
@@ -25,7 +27,7 @@ public class InventoryItem : MonoBehaviour
         itemSelector.GetComponent<Image>().sprite = spriteItemSelector;
 
         ResetData();
-        Deselect();
+        desactivateSelector();
     }
 
     public void ResetData()
@@ -37,18 +39,24 @@ public class InventoryItem : MonoBehaviour
     public void SetData(Sprite itemSprite, int quantity)
     {
         item.SetActive(true);
+        Debug.Log("Entrou nessa xereca");
         itemImage.sprite = itemSprite;
         itemQuantity.text = quantity + "";
         empty = false;
-
     }
 
-    public void Select()
+    public void selectItemFromInventory()
+    {
+        itemSelector.GetComponent<Image>().sprite = spriteItemSelectorClick;
+        activateSelector();
+    }
+
+    public void activateSelector()
     {
         itemSelector.gameObject.SetActive(true);
     }
 
-    public void Deselect()
+    public void desactivateSelector()
     {
         itemSelector.gameObject.SetActive(false);
     }
@@ -57,14 +65,14 @@ public class InventoryItem : MonoBehaviour
     {
         if (empty || Mouse.current.leftButton.isPressed || Mouse.current.rightButton.isPressed)
             return;
-        Select();
+        activateSelector();
     }
 
     public void OnPointerExit()
     {
         if (empty || Mouse.current.leftButton.isPressed || Mouse.current.rightButton.isPressed)
             return;
-        Deselect();
+        desactivateSelector();
     }
 
     public void OnBeginDrag()
@@ -72,14 +80,14 @@ public class InventoryItem : MonoBehaviour
         if (empty)
             return;
         itemSelector.GetComponent<Image>().sprite = spriteItemSelectorClick;
-        Select();
+        activateSelector();
         OnItemBeginDrag?.Invoke(this);
     }
 
     public void OnEndDrag()
     {
         itemSelector.GetComponent<Image>().sprite = spriteItemSelector;
-        Deselect();
+        desactivateSelector();
         OnItemEndDrag?.Invoke(this);
     }
 

@@ -3,20 +3,23 @@ using UnityEngine.InputSystem;
 
 public class InventoryControl : MonoBehaviour
 {
-    [SerializeField] private InventoryPage invetoryUI;
+    [SerializeField] private InventoryPage inventoryUI;
     public int inventoryMaxSize = 0;
 
-    public void Start() => invetoryUI.initializeInventoryUI(inventoryMaxSize);
+    public void Start() => inventoryUI.initializeInventoryUI(inventoryMaxSize);
 
     public void Update()
     {
         if (Keyboard.current.iKey.isPressed || Keyboard.current.tabKey.isPressed)
         {
-            if (!invetoryUI.IsVisible())
-                invetoryUI.ShowInventory();
+            if (!inventoryUI.IsVisible())
+                inventoryUI.ShowInventory();
             return;
         }
-        if (invetoryUI.IsVisible())
-            invetoryUI.HideInventory();
+        if (inventoryUI.IsVisible())
+        {
+            inventoryUI.HideInventory();
+            inventoryUI.itemDescription.ResetDescription();
+        }
     }
 }

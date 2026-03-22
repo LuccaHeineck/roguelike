@@ -336,6 +336,9 @@ MonoBehaviour:
   spriteItemSelectorClick: {fileID: 4713581911431519990, guid: 8953ede3114cb66428b40de489333ed7, type: 3}
   itemQuantity: {fileID: 7657233037910555355}
   item: {fileID: 8780446347403193041}
+  title: 
+  description: 
+  effects: 
 --- !u!114 &3540980393194410785
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -772,8 +772,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bc02701f2312e459efc5694e00706e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryControl
-  invetoryUI: {fileID: 0}
-  inventorySize: 10
+  inventoryUI: {fileID: 0}
+  inventoryMaxSize: 30
 --- !u!114 &1219147516959553264
 MonoBehaviour:
   m_ObjectHideFlags: 0
