@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Humano
   m_EditorClassIdentifier: Assembly-CSharp::FaccaoData
   nomeFaccao: Humano
-  descricao: "Descri\xE7\xE3o da fac\xE7\xE3o."
+  descricao: "Descri\xE7\xE3o gen\xE9rica para fac\xE7\xE3o inicial. Muito interessante
+    Muito interessante Muito interessante Muito interessante.\nMuito interessante
+    Muito interessante Muito interessante "
   imagem: {fileID: 0}
-  habilidades: []
+  habilidades:
+  - {fileID: 11400000, guid: c79af69c9fc1ee846a42affbab8a8c8a, type: 2}
+  - {fileID: 11400000, guid: d6bbf6b9e04c93941867478d4272c72a, type: 2}

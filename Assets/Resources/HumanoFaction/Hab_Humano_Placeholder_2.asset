@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc7ee4bc9504f114da4a7cbee7c4e8be, type: 3}
-  m_Name: Hab_Humano_Placeholder_1
+  m_Name: Hab_Humano_Placeholder_2
   m_EditorClassIdentifier: Assembly-CSharp::HabilidadeData
-  nomeHabilidade: 
-  descricao: 
+  nomeHabilidade: Beyblade
+  descricao: "Ataque girat\xF3rio que, al\xE9m de atacar, afasta inimigos pr\xF3ximos."
   icone: {fileID: 0}

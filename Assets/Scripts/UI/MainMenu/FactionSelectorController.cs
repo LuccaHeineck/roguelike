@@ -3,63 +3,56 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class CharacterSelectController : MonoBehaviour
+public class FactionSelectorController : MonoBehaviour
 {
-    [Header("Facções cadastradas — adicione novas aqui")]
+    [Header("Facções cadastradas")]
     public FaccaoData[] faccoes;
 
     [Header("UI — Header")]
-    public TextMeshProUGUI txtFaccaoNome;   // texto "Humano" no topo
+    public TextMeshProUGUI txtFaccaoNome;
 
     [Header("UI — Painel Esquerdo")]
-    public Image imgFaccao;                 // imagem da facção
-    public TextMeshProUGUI txtDescricao;    // descrição da facção
+    public Image imgFaccao;
+    public TextMeshProUGUI txtDescricao;
 
     [Header("UI — Habilidades")]
-    public HabilidadeSlot[] habilidadeSlots; // os 9 slots da grade
+    public HabilidadeSlot[] habilidadeSlots;
 
-    private int indiceAtual = 0;            // qual facção está sendo exibida
+    private int indiceAtual = 0;
 
     void Start()
     {
-        AtualizarUI(); // exibe a primeira facção ao abrir a tela
+        AtualizarUI();
     }
 
-    // Chamado pelo BtnAnterior — volta uma facção na lista
     public void BotaoAnterior()
     {
         indiceAtual--;
         if (indiceAtual < 0)
-            indiceAtual = faccoes.Length - 1; // se estava no primeiro, vai para o último
+            indiceAtual = faccoes.Length - 1;
         AtualizarUI();
     }
 
-    // Chamado pelo BtnProximo — avança uma facção na lista
     public void BotaoProximo()
     {
         indiceAtual++;
         if (indiceAtual >= faccoes.Length)
-            indiceAtual = 0; // se estava no último, volta para o primeiro
+            indiceAtual = 0;
         AtualizarUI();
     }
 
-    // Atualiza todos os elementos visuais com os dados da facção atual
     void AtualizarUI()
     {
         if (faccoes.Length == 0) return;
 
         FaccaoData faccao = faccoes[indiceAtual];
 
-        // Atualiza header
         txtFaccaoNome.text = faccao.nomeFaccao;
-
-        // Atualiza painel esquerdo
         txtDescricao.text = faccao.descricao;
+
         if (faccao.imagem != null)
             imgFaccao.sprite = faccao.imagem;
 
-        // Atualiza cada slot de habilidade
-        // Slots sem habilidade correspondente são automaticamente ocultados
         for (int i = 0; i < habilidadeSlots.Length; i++)
         {
             if (i < faccao.habilidades.Length && faccao.habilidades[i] != null)
@@ -69,12 +62,11 @@ public class CharacterSelectController : MonoBehaviour
         }
     }
 
-    // Chamado pelo BtnEscolher — salva a escolha e vai para a próxima tela
     public void BotaoEscolher()
     {
-        // Salva o índice escolhido para ser lido nas próximas cenas
+        // Salva índice da facção para a próxima cena ler
         PlayerPrefs.SetInt("FaccaoEscolhida", indiceAtual);
-        SceneManager.LoadScene("ChooseName");
+        SceneManager.LoadScene("CharacterSelect");
     }
 
     public void BotaoVoltar()
