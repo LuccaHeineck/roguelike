@@ -19,7 +19,7 @@ public class InventoryControl : MonoBehaviour
         if (inventoryUI.IsVisible())
         {
             inventoryUI.HideInventory();
-            inventoryUI.UIDescriptionPanel.ResetDescription();
+            inventoryUI.itemDescription.ResetDescription();
         }
     }
 }

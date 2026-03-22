@@ -699,9 +699,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a07255eaeed0f649904cb96c284c89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIInventoryPage
-  UIItemPrefab: {fileID: 5690556120564229404, guid: 76f05d8806727d04e87f6836928bd12f, type: 3}
-  UIContentPanel: {fileID: 1258254639968977882}
-  UIDescriptionPanel: {fileID: 1857577789569012093}
+  itemPrefab: {fileID: 5690556120564229404, guid: 76f05d8806727d04e87f6836928bd12f, type: 3}
+  contentPanel: {fileID: 1445937565242250379}
+  itemDescription: {fileID: 1857577789569012093}
   tempSprite: {fileID: -2368258300328625363, guid: 42e5714479a74ed48b6f8ac95b1dfa26, type: 3}
   tempQuantity: 1
   tempTitle: Espada Pika
@@ -876,7 +876,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f0cb428bebb1a0489a620a0e2be7854, type: 2}
   m_sharedMaterial: {fileID: -1443208244177620885, guid: 8f0cb428bebb1a0489a620a0e2be7854, type: 2}
@@ -1034,7 +1034,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f0cb428bebb1a0489a620a0e2be7854, type: 2}
   m_sharedMaterial: {fileID: -1443208244177620885, guid: 8f0cb428bebb1a0489a620a0e2be7854, type: 2}
@@ -1264,10 +1264,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580c0173c7442744294458325f63dcfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemDescription
-  itemImagePanel: {fileID: 1232292984901922988}
-  itemTitlePanel: {fileID: 8318163195018399817}
-  itemDescriptionPanel: {fileID: 6347783614512137501}
-  itemEffectsPanel: {fileID: 4540071982345087806}
+  itemImage: {fileID: 1232292984901922988}
+  itemTitle: {fileID: 8318163195018399817}
+  itemDescription: {fileID: 6347783614512137501}
+  itemEffects: {fileID: 4540071982345087806}
 --- !u!1 &5396292534611417374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,7 +1742,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f0cb428bebb1a0489a620a0e2be7854, type: 2}
   m_sharedMaterial: {fileID: -1443208244177620885, guid: 8f0cb428bebb1a0489a620a0e2be7854, type: 2}
