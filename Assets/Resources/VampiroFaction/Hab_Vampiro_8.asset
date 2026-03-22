@@ -15,6 +15,6 @@ MonoBehaviour:
   nomeHabilidade: 
   descricao: 
   icone: {fileID: 0}
-  isLocked: 0
-  descricaoLocked: 
+  isLocked: 1
+  descricaoLocked: "Essa Habilidade est\xE1 bloqueada no momento."
   iconeLocked: {fileID: 0}

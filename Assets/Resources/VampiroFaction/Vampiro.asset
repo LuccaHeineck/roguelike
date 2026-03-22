@@ -16,6 +16,15 @@ MonoBehaviour:
   descricao: "Os vampiros s\xE3o uma fac\xE7\xE3o que vive na zona da Morte, expulsos
     pelos Humanos seu objetivo \xE9 vingan\xE7a."
   imagem: {fileID: 0}
-  habilidades: []
+  habilidades:
+  - {fileID: 11400000, guid: e58cc0893e468bb49aefe5419a128fbf, type: 2}
+  - {fileID: 11400000, guid: 839b79e947d63a74bb0d9a2fb20b9a82, type: 2}
+  - {fileID: 11400000, guid: 11578d57d329c4a4cbc147318b05c015, type: 2}
+  - {fileID: 11400000, guid: d523fe85e9d4f3844930cf298d3d971b, type: 2}
+  - {fileID: 11400000, guid: be769c02b0abeb0449d16bcc0c9420b5, type: 2}
+  - {fileID: 11400000, guid: b5fb5893d96e9bc4080b97712ae657d6, type: 2}
+  - {fileID: 11400000, guid: 18915053d6d2be941869e9905fc2df21, type: 2}
+  - {fileID: 11400000, guid: 8b6c21f73dae83242b322166e99bfd7b, type: 2}
+  - {fileID: 11400000, guid: 3b1de0398bf86d44bb2a3f14f98879a8, type: 2}
   personagens:
   - {fileID: 11400000, guid: f6c0d22e9edf4884bb1a8411e488a737, type: 2}
