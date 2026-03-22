@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public enum GameState { Playing, Paused, GameOver }
     public GameState CurrentState { get; private set; }
+    public bool CanPause { get; private set; } = true;
 
     private void Awake()
     {
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        if (!CanPause) return;
+
         CurrentState = GameState.Paused;
         Time.timeScale = 0f;
     }
@@ -40,5 +43,10 @@ public class GameManager : MonoBehaviour
     public void QuitToMainMenu()
     {
         LoadScene("MainMenu");
+    }
+
+    public void SetCanPause(bool value)
+    {
+        CanPause = value;
     }
 }
