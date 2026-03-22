@@ -7,4 +7,10 @@ public class MainMenuController : MonoBehaviour
     {
         SceneManager.LoadScene("FactionSelect");
     }
+
+    public void BotaoSair()
+    {
+        Application.Quit();
+        Debug.Log("Quit não funciona em editor, então por enquanto esse log representa OK");
+    }
 }
