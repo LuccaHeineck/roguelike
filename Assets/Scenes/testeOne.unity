@@ -50666,6 +50666,14 @@ PrefabInstance:
       propertyPath: invetoryUI
       value: 
       objectReference: {fileID: 292639300}
+    - target: {fileID: 6307222537779002361, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+      propertyPath: inventorySize
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 6307222537779002361, guid: d17e90559a18f4148a21647faf905c37, type: 3}
+      propertyPath: inventoryMaxSize
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 7220173918255507538, guid: d17e90559a18f4148a21647faf905c37, type: 3}
       propertyPath: m_Name
       value: Player

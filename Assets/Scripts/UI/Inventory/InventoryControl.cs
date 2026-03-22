@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 public class InventoryControl : MonoBehaviour
 {
     [SerializeField] private InventoryPage invetoryUI;
-    public int inventorySize = 0;
+    public int inventoryMaxSize = 0;
 
-    public void Start() => invetoryUI.initializeInventoryUI(inventorySize);
+    public void Start() => invetoryUI.initializeInventoryUI(inventoryMaxSize);
 
     public void Update()
     {
