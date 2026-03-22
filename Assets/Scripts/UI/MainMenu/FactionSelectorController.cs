@@ -53,12 +53,13 @@ public class FactionSelectorController : MonoBehaviour
         if (faccao.imagem != null)
             imgFaccao.sprite = faccao.imagem;
 
+        // Preenche todos os 9 slots sempre
         for (int i = 0; i < habilidadeSlots.Length; i++)
         {
             if (i < faccao.habilidades.Length && faccao.habilidades[i] != null)
                 habilidadeSlots[i].Preencher(faccao.habilidades[i]);
             else
-                habilidadeSlots[i].Limpar();
+                habilidadeSlots[i].Limpar(); // oculta slots sem habilidade
         }
     }
 

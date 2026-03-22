@@ -14,6 +14,9 @@ public class CharacterSelectController : MonoBehaviour
     [Header("UI — Cards de personagem (3 slots)")]
     public PersonagemCard[] cards;
 
+    [Header("UI — Botões")]
+    public UnityEngine.UI.Button btnJogar;
+
     [Header("UI — Painel Direito")]
     public GameObject painelDireito;
     public Image imgPersonagem;
@@ -35,6 +38,7 @@ public class CharacterSelectController : MonoBehaviour
             faccaoAtual = faccoes[indiceFaccao];
 
         painelDireito.SetActive(false); // começa oculto
+        btnJogar.interactable = false;
         AtualizarUI();
     }
 
@@ -47,9 +51,11 @@ public class CharacterSelectController : MonoBehaviour
     for (int i = 0; i < cards.Length; i++)
     {
         if (i < faccaoAtual.personagens.Length && faccaoAtual.personagens[i] != null)
-            cards[i].Preencher(faccaoAtual.personagens[i], SelecionarPersonagem, i);
-        else
-            cards[i].Limpar();
+            {
+                cards[i].Preencher(faccaoAtual.personagens[i], SelecionarPersonagem, i);
+            }
+            else
+                cards[i].Limpar();
     }
 }
 
@@ -60,6 +66,7 @@ public class CharacterSelectController : MonoBehaviour
         PersonagemData p = faccaoAtual.personagens[indice];
 
         painelDireito.SetActive(true);
+        btnJogar.interactable = true;
 
         txtNomePersonagem.text = p.nomePersonagem;
         txtDescricaoPersonagem.text = p.descricao;
@@ -74,14 +81,17 @@ public class CharacterSelectController : MonoBehaviour
     }
 
     public void BotaoConfirmar()
+{
+    if (personagemSelecionado == -1)
     {
-        if (personagemSelecionado == -1) return; // nenhum selecionado
-        PlayerPrefs.SetInt("PersonagemEscolhido", personagemSelecionado);
-        SceneManager.LoadScene("testeOne");
+        return;
     }
+    PlayerPrefs.SetInt("PersonagemEscolhido", personagemSelecionado);
+    SceneManager.LoadScene("testeOne");
+}
 
     public void BotaoVoltar()
     {
-        SceneManager.LoadScene("CharacterSelect");
+        SceneManager.LoadScene("FactionSelect");
     }
 }

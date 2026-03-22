@@ -17,3 +17,5 @@ MonoBehaviour:
     pelos Humanos seu objetivo \xE9 vingan\xE7a."
   imagem: {fileID: 0}
   habilidades: []
+  personagens:
+  - {fileID: 11400000, guid: f6c0d22e9edf4884bb1a8411e488a737, type: 2}
