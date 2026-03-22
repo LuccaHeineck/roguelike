@@ -5,6 +5,6 @@ public class MainMenuController : MonoBehaviour
 {
     public void BotaoNovoJogo()
     {
-        SceneManager.LoadScene("testeOne");
+        SceneManager.LoadScene("CharacterSelect");
     }
 }
