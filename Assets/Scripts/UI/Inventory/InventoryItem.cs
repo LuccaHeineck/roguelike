@@ -39,7 +39,6 @@ public class InventoryItem : MonoBehaviour
     public void SetData(Sprite itemSprite, int quantity)
     {
         item.SetActive(true);
-        Debug.Log("Entrou nessa xereca");
         itemImage.sprite = itemSprite;
         itemQuantity.text = quantity + "";
         empty = false;
