@@ -24,12 +24,14 @@ public class PauseMenuController : MonoBehaviour
     public void Pause()
     {
         pausePanel.SetActive(true);
+        GlobalUIBlurController.SetBlurActive(this, true);
         GameManager.Instance.PauseGame();
     }
 
     public void Resume()
     {
         pausePanel.SetActive(false);
+        GlobalUIBlurController.SetBlurActive(this, false);
         GameManager.Instance.ResumeGame();
     }
 
@@ -41,6 +43,12 @@ public class PauseMenuController : MonoBehaviour
     public void QuitToMenu()
     {
         pausePanel.SetActive(false);
+        GlobalUIBlurController.SetBlurActive(this, false);
         GameManager.Instance.QuitToMainMenu();
+    }
+
+    private void OnDisable()
+    {
+        GlobalUIBlurController.SetBlurActive(this, false);
     }
 }
