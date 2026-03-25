@@ -6,7 +6,7 @@ using UnityEngine;
  * Este efeito pode ser usado para criar itens que aumentam temporariamente a velocidade, saúde, dano, etc do jogador.
  */
 
-[CreateAssetMenu(fileName = "NewStatEffect", menuName = "Game/Item/Effects/Stat")]
+[CreateAssetMenu(fileName = "NewStatEffect", menuName = "Game/Items/Effects/Stat")]
 public class StatEffect : ItemEffect
 {
     [SerializeField] private StatType stat;

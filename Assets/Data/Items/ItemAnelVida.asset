@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: faaf95002da735c43947573d4c1904c3, type: 3}
-  m_Name: NewItem
+  m_Name: ItemAnelVida
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemId: espada_foda
-  itemName: Espada Foda
-  itemDescription: espada encontrada no cu de deus
-  itemEffectText: mais 2 de dano
-  itemSprite: {fileID: 0}
+  itemId: anel_vida
+  itemName: Anel de Vida
+  itemDescription: Anel de vida bem top
+  itemEffectText: Mais 5 de vida
+  itemSprite: {fileID: -3936300791184696328, guid: 42e5714479a74ed48b6f8ac95b1dfa26, type: 3}
   effects:
   - {fileID: 11400000, guid: cc8e697aa6d7e8b4d92d92fbca326dcc, type: 2}
   runtimeEffects: []
