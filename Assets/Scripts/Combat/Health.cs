@@ -4,15 +4,18 @@ using System;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
+    private PlayerStats playerStats;
 
     public int CurrentHealth { get; private set; }
+    public int MaxHealth => maxHealth + (playerStats != null ? playerStats.MaxHealthBonus : 0);
     public bool IsDead { get; private set; }
     public event Action OnDeath;
     public event Action OnDamage;
 
     void Awake()
     {
-        CurrentHealth = maxHealth;
+        playerStats = GetComponent<PlayerStats>();
+        CurrentHealth = MaxHealth;
     }
 
     public void TakeDamage(int damage)
@@ -35,7 +38,7 @@ public class Health : MonoBehaviour
     {
         if (IsDead) return;
 
-        CurrentHealth = Mathf.Min(CurrentHealth + amount, maxHealth);
+        CurrentHealth = Mathf.Min(CurrentHealth + amount, MaxHealth);
     }
 
     private void Hurt()

@@ -16,6 +16,7 @@ public class InventoryControl : MonoBehaviour
                 inventoryUI.ShowInventory();
             return;
         }
+
         if (inventoryUI.IsVisible())
         {
             inventoryUI.HideInventory();

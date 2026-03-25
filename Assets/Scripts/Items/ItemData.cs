@@ -1,6 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* 
+ * ItemData é uma classe que representa os dados de um item no jogo. Ela é um ScriptableObject que pode ser criado como um asset no Unity.
+ * Cada item tem um ID, nome, descrição, texto de efeito, sprite e listas de efeitos (ItemEffect) e efeitos de runtime (RuntimeItemEffect).
+ * Os efeitos de item são usados para descrever o que o item faz em termos de mecânicas do jogo, enquanto os efeitos de runtime são usados para aplicar comportamentos específicos quando o item é adquirido pelo jogador.
+ */
+
 [CreateAssetMenu(fileName = "NewItem", menuName = "Game/Item")]
 public class ItemData : ScriptableObject
 {
