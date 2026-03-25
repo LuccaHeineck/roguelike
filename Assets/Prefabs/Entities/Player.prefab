@@ -402,6 +402,8 @@ GameObject:
   - component: {fileID: 8710056895671752969}
   - component: {fileID: 3417906727404026385}
   - component: {fileID: 2881263092270960316}
+  - component: {fileID: 1808898206841263579}
+  - component: {fileID: 6901279677359738688}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -768,7 +770,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7220173918255507538}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4bc02701f2312e459efc5694e00706e, type: 3}
   m_Name: 
@@ -833,6 +835,36 @@ MonoBehaviour:
   maxHealthBonus: 0
   defenseBonus: 0
   damageBonus: 0
+--- !u!114 &1808898206841263579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7220173918255507538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 748e126a26eefb74382ed85e999911ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemTester
+  itemData: {fileID: 11400000, guid: b44f0f40777a6d749bf374fb4142d53c, type: 2}
+  addAmountPerPress: 1
+  removeAmountPerPress: 1
+--- !u!114 &6901279677359738688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7220173918255507538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ed46150af8a934d81dea8959d16934, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
+  maxSlots: 24
+  defaultMaxStackPerItem: 99
+  playerStats: {fileID: 2881263092270960316}
 --- !u!1 &7721481249557805268
 GameObject:
   m_ObjectHideFlags: 0
