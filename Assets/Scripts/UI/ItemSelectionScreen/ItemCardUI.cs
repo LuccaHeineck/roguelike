@@ -17,11 +17,11 @@ public class ItemCardUI : MonoBehaviour
     {
         currentItem = itemData;
 
-        itemNameText.text = itemData.ItemName;        // era itemData.itemName
-        descriptionText.text = itemData.ItemDescription; // era itemData.description
+        itemNameText.text = itemData.ItemName;
+        descriptionText.text = itemData.ItemDescription;
 
         if (itemData.ItemSprite != null)
-            iconImage.sprite = itemData.ItemSprite;      // era itemData.sprite
+            iconImage.sprite = itemData.ItemSprite;
 
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => onSelected(currentItem));
