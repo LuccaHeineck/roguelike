@@ -555,10 +555,10 @@ TextureImporter:
       name: 07_13
       rect:
         serializedVersion: 2
-        x: 18
-        y: 135
-        width: 108
-        height: 137
+        x: 81
+        y: 198
+        width: 14
+        height: 4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -646,7 +646,7 @@ TextureImporter:
         x: 34
         y: 102
         width: 93
-        height: 18
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1409,6 +1409,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: 07_52
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 118
+        width: 14
+        height: 3
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fec38b3f130263543b7092cc942c9fa3
+      internalID: 2121691596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -1473,6 +1495,7 @@ TextureImporter:
       07_5: 2307247101346912050
       07_50: -8905386590893464805
       07_51: -4967793641946575330
+      07_52: 2121691596
       07_6: 2891286312558755811
       07_7: 1057909255617069074
       07_8: 8254462475506623851
