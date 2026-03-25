@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class PlayerControl : MonoBehaviour
     public PlayerAttackState AttackState { get; private set; }
     public PlayerDashState DashState { get; private set; }
 
+    private bool attackRequested;
+
     void Awake()
     {
         StateMachine = new StateMachine();
@@ -48,6 +51,7 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        ResolveAttackRequest();
         StateMachine.Update();
     }
 
@@ -62,7 +66,7 @@ public class PlayerControl : MonoBehaviour
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.performed)
-            AttackPressed = true;
+            attackRequested = true;
     }
 
     public void Dash(InputAction.CallbackContext context)
@@ -99,4 +103,31 @@ public class PlayerControl : MonoBehaviour
     public void ConsumeAttack() => AttackPressed = false;
 
     public void ConsumeDash() => DashPressed = false;
+
+    private void ResolveAttackRequest()
+    {
+        if (!attackRequested)
+        {
+            return;
+        }
+
+        attackRequested = false;
+
+        if (IsPointerOverUI())
+        {
+            return;
+        }
+
+        AttackPressed = true;
+    }
+
+    private static bool IsPointerOverUI()
+    {
+        if (EventSystem.current == null)
+        {
+            return false;
+        }
+
+        return EventSystem.current.IsPointerOverGameObject();
+    }
 }
