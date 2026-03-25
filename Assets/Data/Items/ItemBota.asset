@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: faaf95002da735c43947573d4c1904c3, type: 3}
-  m_Name: ItemEspada
+  m_Name: ItemBota
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemId: espada
-  itemName: Espada
-  itemDescription: Espada gigante
-  itemEffectText: Da dano
-  itemSprite: {fileID: -2368258300328625363, guid: 42e5714479a74ed48b6f8ac95b1dfa26, type: 3}
+  itemId: bota
+  itemName: Bota
+  itemDescription: Bota velha
+  itemEffectText: Mais velocidade
+  itemSprite: {fileID: 8518360833381710166, guid: 42e5714479a74ed48b6f8ac95b1dfa26, type: 3}
   effects:
-  - {fileID: 11400000, guid: 43ed1df747bf3744586cfef63b7b4497, type: 2}
+  - {fileID: 11400000, guid: 2c36c6babfb18de42a016fae9fa60c7d, type: 2}
   runtimeEffects: []

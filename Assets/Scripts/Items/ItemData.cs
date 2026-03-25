@@ -7,7 +7,7 @@ using UnityEngine;
  * Os efeitos de item são usados para descrever o que o item faz em termos de mecânicas do jogo, enquanto os efeitos de runtime são usados para aplicar comportamentos específicos quando o item é adquirido pelo jogador.
  */
 
-[CreateAssetMenu(fileName = "NewItem", menuName = "Game/Item")]
+[CreateAssetMenu(fileName = "NewItem", menuName = "Game/Items/Definitions/Item Data")]
 public class ItemData : ScriptableObject
 {
     [SerializeField] private string itemId;
