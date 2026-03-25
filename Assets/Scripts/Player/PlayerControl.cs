@@ -7,7 +7,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float dashDistance = 15f;
     [SerializeField] private float dashDuration = 0.15f;
 
-    public float MovSpeed => movSpeed;
+    public float MovSpeed => movSpeed + (Stats != null ? Stats.MoveSpeedBonus : 0f);
     public float DashDistance => dashDistance;
     public float DashDuration => dashDuration;
     public Rigidbody2D Rb { get; private set; }
@@ -16,6 +16,7 @@ public class PlayerControl : MonoBehaviour
     public Vector2 LastMoveInput { get; private set; }
     public StateMachine StateMachine { get; private set; }
     public Health Health { get; private set; }
+    public PlayerStats Stats { get; private set; }
     public bool AttackPressed { get; private set; }
     public bool DashPressed { get; private set; }
     public float LastDashAt { get; private set; }
@@ -40,6 +41,7 @@ public class PlayerControl : MonoBehaviour
     {
         Rb = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
+        Stats = GetComponent<PlayerStats>();
 
         StateMachine.ChangeState(IdleState);
     }

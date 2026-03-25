@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faaf95002da735c43947573d4c1904c3, type: 3}
+  m_Name: ItemEspada
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemId: espada
+  itemName: Espada
+  itemDescription: Espada gigante
+  itemEffectText: Da dano
+  itemSprite: {fileID: 0}
+  effects:
+  - {fileID: 11400000, guid: 43ed1df747bf3744586cfef63b7b4497, type: 2}
+  runtimeEffects: []
