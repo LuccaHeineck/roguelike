@@ -13,24 +13,25 @@ public class UIInventory : MonoBehaviour
 
     private void Awake()
     {
-
         Hide();
         UIDescription.ResetDescription();
     }
 
     public void setInventoryControl(UIInventoryControl UIInvControl) => this.UIInvControl = UIInvControl;
 
-    public void InitializeUIInventory(int numberOfItems)
+    public void InitializeUIInventory(int maxSlots)
     {
         foreach (var item in listOfItems) Destroy(item.gameObject);
         listOfItems.Clear();
 
-        for (int i = 0; i < numberOfItems; i++)
+        int numberOfItems = UIInvControl.pInventory.Stacks.Count;
+
+        for (int i = 0; i < maxSlots; i++)
         {
             UIInventoryItem uiItem = Instantiate(UIItemPrefab, Vector3.zero, Quaternion.identity);
             uiItem.transform.SetParent(UIInventoryGrid);
 
-            if (UIInvControl.pInventory.Stacks[i] != null)
+            if (i < numberOfItems)
             {
                 uiItem.ConvertItemIntoUIItem(UIInvControl.pInventory.Stacks[i]);
                 listOfItems.Add(uiItem);
@@ -57,8 +58,6 @@ public class UIInventory : MonoBehaviour
         // string description = item.description;
         // string effects = item.effects;
         //UIDescription.SetDescription(sprite, title, description, effects);
-        UIDescription.SetDescription(tempSprite, tempTitle, tempDescription, tempEffects);
-        listOfItems[0].activateSelector();
     }
     private void HandleShowItemActions(UIInventoryItem item)
     {
@@ -81,16 +80,11 @@ public class UIInventory : MonoBehaviour
 
     }
 
-    public Sprite tempSprite;
-    public int tempQuantity;
-    public string tempTitle, tempDescription, tempEffects;
 
     public void Show()
     {
         gameObject.SetActive(true);
         UIDescription.ResetDescription();
-
-        listOfItems[0].SetData(tempSprite, tempQuantity);
     }
 
     public void Hide()

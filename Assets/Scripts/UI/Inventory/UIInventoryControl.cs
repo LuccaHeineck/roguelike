@@ -9,6 +9,7 @@ public class UIInventoryControl : MonoBehaviour
     [HideInInspector] public DamageSource pDamageSource;
     [HideInInspector] public Health pHealth;
     [HideInInspector] public PlayerStats pStats;
+    private int MaxSlots;
 
     void Awake()
     {
@@ -17,9 +18,14 @@ public class UIInventoryControl : MonoBehaviour
         pDamageSource = GetComponent<DamageSource>();
         pHealth = GetComponent<Health>();
         pStats = GetComponent<PlayerStats>();
+        MaxSlots = pInventory.MaxSlots;
+        UIInventory.setInventoryControl(this);
     }
 
-    void Start() => UIInventory.InitializeUIInventory(pInventory.MaxSlots);
+    void Start()
+    {
+        UIInventory.InitializeUIInventory(MaxSlots);
+    }
 
     void Update()
     {
