@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float dashDuration = 0.15f;
 
     public float MovSpeed => movSpeed + (Stats != null ? Stats.MoveSpeedBonus : 0f);
+    public float MovSpeedMultiplier { get; private set; }
     public float DashDistance => dashDistance;
     public float DashDuration => dashDuration;
     public Rigidbody2D Rb { get; private set; }
@@ -52,6 +53,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         ResolveAttackRequest();
+        UpdateAnimationSpeed();
         StateMachine.Update();
     }
 
@@ -61,6 +63,15 @@ public class PlayerControl : MonoBehaviour
 
         if (MoveInput != Vector2.zero)
             LastMoveInput = MoveInput;
+    }
+
+    private void UpdateAnimationSpeed()
+    {
+        if (movSpeed > 0.0)
+        {
+            MovSpeedMultiplier = (movSpeed + Stats.MoveSpeedBonus) / movSpeed;
+            Animator.SetFloat("moveSpeedMultiplier", MovSpeedMultiplier);
+        }
     }
 
     public void Attack(InputAction.CallbackContext context)
