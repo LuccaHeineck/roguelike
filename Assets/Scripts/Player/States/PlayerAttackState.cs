@@ -24,8 +24,6 @@ public class PlayerAttackState : IState
         comboQueued = false;
         timer = 0f;
 
-        player.Rb.linearVelocity = Vector2.zero;
-
         hitboxController.SetDirection(player.LastMoveInput);
 
         player.Animator.SetFloat("lastInputX", player.LastMoveInput.x);
@@ -38,6 +36,8 @@ public class PlayerAttackState : IState
     public void Update()
     {
         timer += Time.deltaTime;
+
+        player.Rb.linearVelocity = player.Rb.linearVelocity * 0.99f;
 
         if (player.AttackPressed && !comboQueued)
         {
