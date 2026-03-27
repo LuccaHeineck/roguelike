@@ -9,12 +9,10 @@ public class UIDescription : MonoBehaviour
     [SerializeField] private TMP_Text itemDescription;
     [SerializeField] private TMP_Text itemEffects;
 
-
     void Awake()
     {
         ResetDescription();
     }
-
 
     public void ResetDescription()
     {
@@ -23,12 +21,17 @@ public class UIDescription : MonoBehaviour
         this.itemDescription.text = "";
         this.itemEffects.text = "";
     }
-    public void SetDescription(Sprite sprite, string title, string description, string effects)
+    public void SetDescription(UIInventoryItem item)
     {
         this.itemImage.SetActive(true);
-        this.itemImage.GetComponent<Image>().sprite = sprite;
-        this.itemTitle.text = title;
-        this.itemDescription.text = description;
-        this.itemEffects.text = effects;
+        this.itemImage.GetComponent<Image>().sprite = item.image.sprite;
+        this.itemTitle.text = item.title;
+        this.itemDescription.text = item.description;
+        this.itemEffects.text = item.effects;
+    }
+
+    public void SetDefaultDescription()
+    {
+
     }
 }

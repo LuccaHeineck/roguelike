@@ -6,14 +6,16 @@ public class UIInventory : MonoBehaviour
 {
     [SerializeField] private UIInventoryItem UIItemPrefab;
     [SerializeField] private RectTransform UIInventoryGrid;
+    public UIDescription UIDescription;
 
     UIInventoryControl UIInvControl;
-    public UIDescription UIDescription;
     List<UIInventoryItem> listOfItems = new List<UIInventoryItem>();
+
+    int lastItemSelected = 0;
 
     private void Awake()
     {
-        Hide();
+        HideInventory();
         UIDescription.ResetDescription();
     }
 
@@ -39,57 +41,48 @@ public class UIInventory : MonoBehaviour
 
             uiItem.OnItemClicked += HandleItemSelection;
             uiItem.OnItemRightClicked += HandleShowItemActions;
-            uiItem.OnItemBeginDrag += HandleBeginDrag;
-            uiItem.OnItemEndDrag += HandleEndDrag;
-            uiItem.OnItemDroppedOn += HandleSwap;
+            // uiItem.OnItemBeginDrag += HandleBeginDrag;
+            // uiItem.OnItemEndDrag += HandleEndDrag;
+            // uiItem.OnItemDroppedOn += HandleSwap;
         }
 
         HideInventory();
     }
 
-    public void ShowInventory() => gameObject.SetActive(true);
-    public void HideInventory() => gameObject.SetActive(false);
     public bool IsVisible() => gameObject.activeSelf;
+
+    public void ShowInventory()
+    {
+        gameObject.SetActive(true);
+        UIDescription.ResetDescription();
+    }
+
+    public void HideInventory() => gameObject.SetActive(false);
+
 
     private void HandleItemSelection(UIInventoryItem item)
     {
-        // Sprite sprite = item.GetComponent<Image>().sprite;
-        // string title = item.title;
-        // string description = item.description;
-        // string effects = item.effects;
-        //UIDescription.SetDescription(sprite, title, description, effects);
+        listOfItems[lastItemSelected].desactivateSelector();
+        lastItemSelected = item.transform.GetSiblingIndex();
+        item.activateSelector();
+
+        UIDescription.SetDescription(item);
     }
     private void HandleShowItemActions(UIInventoryItem item)
     {
 
     }
 
-    private void HandleBeginDrag(UIInventoryItem item)
-    {
+    // private void HandleBeginDrag(UIInventoryItem item)
+    // {
+    // }
 
-    }
+    // private void HandleEndDrag(UIInventoryItem item)
+    // {
+    // }
 
-    private void HandleEndDrag(UIInventoryItem item)
-    {
-
-
-    }
-
-    private void HandleSwap(UIInventoryItem item)
-    {
-
-    }
-
-
-    public void Show()
-    {
-        gameObject.SetActive(true);
-        UIDescription.ResetDescription();
-    }
-
-    public void Hide()
-    {
-        gameObject.SetActive(false);
-    }
+    // private void HandleSwap(UIInventoryItem item)
+    // {
+    // }
 
 }

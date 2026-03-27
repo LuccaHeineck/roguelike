@@ -9,6 +9,9 @@ public class UIInventoryControl : MonoBehaviour
     [HideInInspector] public DamageSource pDamageSource;
     [HideInInspector] public Health pHealth;
     [HideInInspector] public PlayerStats pStats;
+
+    public Sprite defaultSlotSprite;
+
     private int MaxSlots;
 
     void Awake()
