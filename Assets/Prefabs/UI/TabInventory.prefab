@@ -1032,6 +1032,7 @@ MonoBehaviour:
   UIItemPrefab: {fileID: 5690556120564229404, guid: 76f05d8806727d04e87f6836928bd12f, type: 3}
   UIInventoryGrid: {fileID: 4064663235469229846}
   UIDescription: {fileID: 6363780640207222256}
+  defaultSlotSprite: {fileID: 4584038428357148285, guid: 5614896276c62f34b867c545459e0222, type: 3}
 --- !u!1 &3130938031844912622
 GameObject:
   m_ObjectHideFlags: 0
@@ -3048,7 +3049,6 @@ MonoBehaviour:
   itemTitle: {fileID: 1502740964202533681}
   itemDescription: {fileID: 1036093929059239894}
   itemEffects: {fileID: 6287298223668676463}
-  itemDefaultSprite: {fileID: 0}
 --- !u!1 &6724205876228720833
 GameObject:
   m_ObjectHideFlags: 0

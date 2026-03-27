@@ -9,29 +9,21 @@ public class UIDescription : MonoBehaviour
     [SerializeField] private TMP_Text itemDescription;
     [SerializeField] private TMP_Text itemEffects;
 
-    void Awake()
-    {
-        ResetDescription();
-    }
+    private UIInventory UIInv;
+    public void SetUIInventory(UIInventory UIInv) => this.UIInv = UIInv;
 
     public void ResetDescription()
     {
-        this.itemImage.SetActive(false);
+        this.itemImage.GetComponent<Image>().sprite = UIInv.defaultSlotSprite;
         this.itemTitle.text = "";
         this.itemDescription.text = "";
         this.itemEffects.text = "";
     }
     public void SetDescription(UIInventoryItem item)
     {
-        this.itemImage.SetActive(true);
         this.itemImage.GetComponent<Image>().sprite = item.image.sprite;
         this.itemTitle.text = item.title;
         this.itemDescription.text = item.description;
         this.itemEffects.text = item.effects;
-    }
-
-    public void SetDefaultDescription()
-    {
-
     }
 }

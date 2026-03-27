@@ -105,10 +105,14 @@ public class UIInventoryItem : MonoBehaviour
     public void OnPointerClick(BaseEventData data)
     {
         PointerEventData pointerData = (PointerEventData)data;
+
+        if (this.empty) return;
+
         if (pointerData.button == PointerEventData.InputButton.Right)
             OnItemRightClicked?.Invoke(this);
         else
             OnItemClicked?.Invoke(this);
+
     }
 
     // public void OnBeginDrag()

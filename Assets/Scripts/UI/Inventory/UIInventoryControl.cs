@@ -10,8 +10,6 @@ public class UIInventoryControl : MonoBehaviour
     [HideInInspector] public Health pHealth;
     [HideInInspector] public PlayerStats pStats;
 
-    public Sprite defaultSlotSprite;
-
     private int MaxSlots;
 
     void Awake()
@@ -22,7 +20,7 @@ public class UIInventoryControl : MonoBehaviour
         pHealth = GetComponent<Health>();
         pStats = GetComponent<PlayerStats>();
         MaxSlots = pInventory.MaxSlots;
-        UIInventory.setInventoryControl(this);
+        UIInventory.SetInventoryControl(this);
     }
 
     void Start()
@@ -40,9 +38,7 @@ public class UIInventoryControl : MonoBehaviour
         }
 
         if (UIInventory.IsVisible())
-        {
             UIInventory.HideInventory();
-            UIInventory.UIDescription.ResetDescription();
-        }
+
     }
 }

@@ -7,19 +7,20 @@ public class UIInventory : MonoBehaviour
     [SerializeField] private UIInventoryItem UIItemPrefab;
     [SerializeField] private RectTransform UIInventoryGrid;
     public UIDescription UIDescription;
+    public Sprite defaultSlotSprite;
 
-    UIInventoryControl UIInvControl;
-    List<UIInventoryItem> listOfItems = new List<UIInventoryItem>();
+    private UIInventoryControl UIInvControl;
+    private List<UIInventoryItem> listOfItems = new List<UIInventoryItem>();
 
     int lastItemSelected = 0;
 
     private void Awake()
     {
         HideInventory();
-        UIDescription.ResetDescription();
+        UIDescription.SetUIInventory(this);
     }
 
-    public void setInventoryControl(UIInventoryControl UIInvControl) => this.UIInvControl = UIInvControl;
+    public void SetInventoryControl(UIInventoryControl UIInvControl) => this.UIInvControl = UIInvControl;
 
     public void InitializeUIInventory(int maxSlots)
     {
@@ -53,8 +54,8 @@ public class UIInventory : MonoBehaviour
 
     public void ShowInventory()
     {
-        gameObject.SetActive(true);
         UIDescription.ResetDescription();
+        gameObject.SetActive(true);
     }
 
     public void HideInventory() => gameObject.SetActive(false);
@@ -62,6 +63,8 @@ public class UIInventory : MonoBehaviour
 
     private void HandleItemSelection(UIInventoryItem item)
     {
+        if (item == null) return;
+
         listOfItems[lastItemSelected].desactivateSelector();
         lastItemSelected = item.transform.GetSiblingIndex();
         item.activateSelector();
