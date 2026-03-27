@@ -4,41 +4,43 @@ using UnityEngine;
 
 public class UIInventory : MonoBehaviour
 {
-    [SerializeField] private UIInventoryItem UIItemPrefab;
+    [SerializeField] private UIItem UIItemPrefab;
     [SerializeField] private RectTransform UIInventoryGrid;
     public UIDescription UIDescription;
     public Sprite defaultSlotSprite;
 
     private UIInventoryControl UIInvControl;
-    private List<UIInventoryItem> listOfItems = new List<UIInventoryItem>();
+    private List<UIItem> ListUIItems = new List<UIItem>();
 
     int lastItemSelected = 0;
 
-    private void Awake()
+    public void SetInventoryControl(UIInventoryControl UIInvControl) => this.UIInvControl = UIInvControl;
+
+    void Awake()
     {
         HideInventory();
         UIDescription.SetUIInventory(this);
     }
 
-    public void SetInventoryControl(UIInventoryControl UIInvControl) => this.UIInvControl = UIInvControl;
+    //==============================================================================
 
     public void InitializeUIInventory(int maxSlots)
     {
-        foreach (var item in listOfItems) Destroy(item.gameObject);
-        listOfItems.Clear();
+        destroyChildren(UIInventoryGrid);
+        foreach (var item in ListUIItems) Destroy(item.gameObject);
+        ListUIItems.Clear();
 
         int numberOfItems = UIInvControl.pInventory.Stacks.Count;
 
         for (int i = 0; i < maxSlots; i++)
         {
-            UIInventoryItem uiItem = Instantiate(UIItemPrefab, Vector3.zero, Quaternion.identity);
+            UIItem uiItem = Instantiate(UIItemPrefab, Vector3.zero, Quaternion.identity);
             uiItem.transform.SetParent(UIInventoryGrid);
 
             if (i < numberOfItems)
-            {
                 uiItem.ConvertItemIntoUIItem(UIInvControl.pInventory.Stacks[i]);
-                listOfItems.Add(uiItem);
-            }
+
+            ListUIItems.Add(uiItem);
 
             uiItem.OnItemClicked += HandleItemSelection;
             uiItem.OnItemRightClicked += HandleShowItemActions;
@@ -50,6 +52,35 @@ public class UIInventory : MonoBehaviour
         HideInventory();
     }
 
+    private void destroyChildren(Transform parent)
+    {
+        foreach (Transform child in parent)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+    }
+
+    public void UpdateUIInventory()
+    {
+        int sizeOfInventory = UIInvControl.pInventory.Stacks.Count;
+
+        if (sizeOfInventory > ListUIItems.Count)
+        {
+            ListUIItems[sizeOfInventory - 1].SetData(UIInvControl.pInventory.Stacks[sizeOfInventory - 1]);
+            return;
+        }
+
+        int itemIndex = 0;
+
+        while (itemIndex < sizeOfInventory)
+        {
+            ListUIItems[itemIndex].UpdateData(UIInvControl.pInventory.Stacks[itemIndex]);
+            itemIndex++;
+        }
+    }
+
+    //==============================================================================
+
     public bool IsVisible() => gameObject.activeSelf;
 
     public void ShowInventory()
@@ -60,31 +91,33 @@ public class UIInventory : MonoBehaviour
 
     public void HideInventory() => gameObject.SetActive(false);
 
+    //==============================================================================
 
-    private void HandleItemSelection(UIInventoryItem item)
+    private void HandleItemSelection(UIItem item)
     {
         if (item == null) return;
 
-        listOfItems[lastItemSelected].desactivateSelector();
+        ListUIItems[lastItemSelected].desactivateSelector();
         lastItemSelected = item.transform.GetSiblingIndex();
         item.activateSelector();
 
         UIDescription.SetDescription(item);
     }
-    private void HandleShowItemActions(UIInventoryItem item)
+
+    private void HandleShowItemActions(UIItem item)
     {
 
     }
 
-    // private void HandleBeginDrag(UIInventoryItem item)
+    // private void HandleBeginDrag(UIItem item)
     // {
     // }
 
-    // private void HandleEndDrag(UIInventoryItem item)
+    // private void HandleEndDrag(UIItem item)
     // {
     // }
 
-    // private void HandleSwap(UIInventoryItem item)
+    // private void HandleSwap(UIItem item)
     // {
     // }
 

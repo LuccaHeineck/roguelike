@@ -1,24 +1,23 @@
 using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class UIInventoryItem : MonoBehaviour
+public class UIItem : MonoBehaviour
 {
     [SerializeField] private GameObject itemSelector;
     [SerializeField] private GameObject itemMarker;
     [SerializeField] private GameObject item;
 
+    [HideInInspector] public string ID;
     [HideInInspector] public string title, description, effects;
     [HideInInspector] public Image image;
     public TMP_Text quantityText;
 
-    public event Action<UIInventoryItem>
+    public event Action<UIItem>
     OnItemClicked, OnItemRightClicked, OnItemDroppedOn, OnItemBeginDrag, OnItemEndDrag;
-
     private bool empty = true;
 
     public void Awake()
@@ -32,10 +31,14 @@ public class UIInventoryItem : MonoBehaviour
 
     // ======================================================
 
-    public void ConvertItemIntoUIItem(InventoryStack stack)
+    public void SetData(InventoryStack stack)
     {
+        this.gameObject.SetActive(true);
+        empty = false;
+
         ItemData item = stack.Item;
 
+        this.ID = item.ItemId;
         this.title = item.ItemName;
         this.quantityText.text = stack.Quantity.ToString();
         this.description = item.ItemDescription;
@@ -43,21 +46,25 @@ public class UIInventoryItem : MonoBehaviour
         this.image.sprite = item.ItemSprite;
     }
 
-    // ======================================================
-
     public void ResetData()
     {
         item.SetActive(false);
         empty = true;
     }
 
-    public void SetData(Sprite itemSprite, int quantity)
+    public void ConvertItemIntoUIItem(InventoryStack stack)
     {
-        item.SetActive(true);
-        image.sprite = itemSprite;
-        quantityText.text = quantity + "";
-        empty = false;
+        ItemData item = stack.Item;
+
+        this.ID = item.ItemId;
+        this.title = item.ItemName;
+        this.quantityText.text = stack.Quantity.ToString();
+        this.description = item.ItemDescription;
+        this.effects = item.ItemEffectText;
+        this.image.sprite = item.ItemSprite;
     }
+
+    public void UpdateData(InventoryStack stack) => this.quantityText.text = stack.Quantity.ToString();
 
     // ======================================================
 

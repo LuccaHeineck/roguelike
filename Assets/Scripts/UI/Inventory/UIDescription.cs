@@ -19,7 +19,7 @@ public class UIDescription : MonoBehaviour
         this.itemDescription.text = "";
         this.itemEffects.text = "";
     }
-    public void SetDescription(UIInventoryItem item)
+    public void SetDescription(UIItem item)
     {
         this.itemImage.GetComponent<Image>().sprite = item.image.sprite;
         this.itemTitle.text = item.title;

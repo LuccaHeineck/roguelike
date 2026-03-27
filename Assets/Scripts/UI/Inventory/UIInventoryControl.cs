@@ -21,6 +21,8 @@ public class UIInventoryControl : MonoBehaviour
         pStats = GetComponent<PlayerStats>();
         MaxSlots = pInventory.MaxSlots;
         UIInventory.SetInventoryControl(this);
+
+        pInventory.OnInventoryChanged += updateUIInventory;
     }
 
     void Start()
@@ -41,4 +43,7 @@ public class UIInventoryControl : MonoBehaviour
             UIInventory.HideInventory();
 
     }
+
+    private void updateUIInventory() => UIInventory.UpdateUIInventory();
+
 }
