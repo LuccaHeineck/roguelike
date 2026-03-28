@@ -10,7 +10,10 @@ using UnityEngine;
 public class StatEffect : ItemEffect
 {
     [SerializeField] private StatType stat;
+    [SerializeField] private StatModifierType modifierType = StatModifierType.Flat;
     [SerializeField] private float value;
+
+    public StatModifierType ModifierType => modifierType;
 
     public override void Apply(PlayerStats stats)
     {
@@ -19,7 +22,7 @@ public class StatEffect : ItemEffect
             return;
         }
 
-        stats.AddBonus(stat, value);
+        stats.AddBonus(stat, modifierType, value);
     }
 
     public override void Remove(PlayerStats stats)
@@ -29,6 +32,6 @@ public class StatEffect : ItemEffect
             return;
         }
 
-        stats.RemoveBonus(stat, value);
+        stats.RemoveBonus(stat, modifierType, value);
     }
 }
