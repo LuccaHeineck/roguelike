@@ -13,6 +13,7 @@ public class UIInventory : MonoBehaviour
     private List<UIItem> ListUIItems = new List<UIItem>();
 
     int lastItemSelected = 0;
+    int UIInventorySize = 0;
 
     public void SetInventoryControl(UIInventoryControl UIInvControl) => this.UIInvControl = UIInvControl;
 
@@ -20,6 +21,7 @@ public class UIInventory : MonoBehaviour
     {
         HideInventory();
         UIDescription.SetUIInventory(this);
+        //getUIInventorySize();
     }
 
     //==============================================================================
@@ -30,14 +32,12 @@ public class UIInventory : MonoBehaviour
         foreach (var item in ListUIItems) Destroy(item.gameObject);
         ListUIItems.Clear();
 
-        int numberOfItems = UIInvControl.pInventory.Stacks.Count;
-
         for (int i = 0; i < maxSlots; i++)
         {
             UIItem uiItem = Instantiate(UIItemPrefab, Vector3.zero, Quaternion.identity);
             uiItem.transform.SetParent(UIInventoryGrid);
 
-            if (i < numberOfItems)
+            if (i < UIInventorySize)
                 uiItem.ConvertItemIntoUIItem(UIInvControl.pInventory.Stacks[i]);
 
             ListUIItems.Add(uiItem);
@@ -62,21 +62,30 @@ public class UIInventory : MonoBehaviour
 
     public void UpdateUIInventory()
     {
-        int sizeOfInventory = UIInvControl.pInventory.Stacks.Count;
+        int inventorySIze = UIInvControl.pInventory.Stacks.Count;
 
-        if (sizeOfInventory > ListUIItems.Count)
+        if (inventorySIze > UIInventorySize)
         {
-            ListUIItems[sizeOfInventory - 1].SetData(UIInvControl.pInventory.Stacks[sizeOfInventory - 1]);
+            ListUIItems[inventorySIze - 1].SetData(UIInvControl.pInventory.Stacks[inventorySIze - 1]);
+            UIInventorySize++;
             return;
         }
 
         int itemIndex = 0;
 
-        while (itemIndex < sizeOfInventory)
+        while (itemIndex < inventorySIze)
         {
             ListUIItems[itemIndex].UpdateData(UIInvControl.pInventory.Stacks[itemIndex]);
             itemIndex++;
         }
+    }
+
+    //==============================================================================
+
+    private void getUIInventorySize()
+    {
+        while (ListUIItems[UIInventorySize] != null)
+            UIInventorySize++;
     }
 
     //==============================================================================

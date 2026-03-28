@@ -10,7 +10,7 @@ public class UIInventoryControl : MonoBehaviour
     [HideInInspector] public Health pHealth;
     [HideInInspector] public PlayerStats pStats;
 
-    private int MaxSlots;
+    [HideInInspector] public int MaxSlots;
 
     void Awake()
     {

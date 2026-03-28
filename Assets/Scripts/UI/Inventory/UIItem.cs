@@ -36,14 +36,14 @@ public class UIItem : MonoBehaviour
         this.gameObject.SetActive(true);
         empty = false;
 
-        ItemData item = stack.Item;
+        ItemData itemInv = stack.Item;
 
-        this.ID = item.ItemId;
-        this.title = item.ItemName;
-        this.quantityText.text = stack.Quantity.ToString();
-        this.description = item.ItemDescription;
-        this.effects = item.ItemEffectText;
-        this.image.sprite = item.ItemSprite;
+        this.ID = itemInv.ItemId;
+        this.title = itemInv.ItemName;
+        this.quantityText.text = stack.Quantity + "";
+        this.description = itemInv.ItemDescription;
+        this.effects = itemInv.ItemEffectText;
+        this.image.sprite = itemInv.ItemSprite;
     }
 
     public void ResetData()
