@@ -1,5 +1,10 @@
 using UnityEngine;
 
+public interface IDefenseProvider
+{
+    int GetDefense(int baseDefense);
+}
+
 public class DamageDealer : MonoBehaviour
 {
     private DamageSource damageSource;
@@ -13,7 +18,6 @@ public class DamageDealer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log("Hit something: " + other.name);
         // Previne a entidade de se atacar
         if (other.transform.root == transform.root) return;
 
@@ -23,11 +27,12 @@ public class DamageDealer : MonoBehaviour
 
         if (health != null)
         {
-            PlayerStats targetStats = health.GetComponent<PlayerStats>();
-            int defense = targetStats != null ? targetStats.DefenseBonus : 0;
+            IDefenseProvider defenseProvider = health.GetComponent<IDefenseProvider>();
+            int defense = defenseProvider != null
+                ? Mathf.Max(0, defenseProvider.GetDefense(0))
+                : 0;
             int finalDamage = Mathf.Max(1, damageSource.Damage - defense);
 
-            //Debug.Log("damage: " + damageSource.Damage);
             health.TakeDamage(finalDamage);
 
             if (sourceEffectController != null)

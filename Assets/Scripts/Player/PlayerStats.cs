@@ -1,62 +1,145 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-/* 
- * PlayerStats é um componente que mantém bônus temporários de stats para o player.
- * ele permite adicionar e remover bônus para velocidade de movimento, saúde máxima, defesa e dano, etc -> StatType.
- * estes bônus podem ser aplicados por efeitos de itens e são usados para calcular os stats efetivos do jogador (não alterar os stats base do player).
+/*
+ * PlayerStats:
+ * Responsável por armazenar modificadores (flat, percent, override)
+ * e calcular o valor final de um stat com base em um valor base.
  */
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : MonoBehaviour, IMaxHealthProvider, IDamageProvider, IDefenseProvider
 {
-    [SerializeField] private float moveSpeedBonus;
-    [SerializeField] private int maxHealthBonus;
-    [SerializeField] private int defenseBonus;
-    [SerializeField] private int damageBonus;
+    [Header("DEBUG (Read Only)")]
+    [SerializeField] private float debugMoveSpeed;
+    [SerializeField] private int debugMaxHealth;
+    [SerializeField] private int debugDefense;
+    [SerializeField] private int debugDamage;
 
-    public float MoveSpeedBonus => moveSpeedBonus;
-    public int MaxHealthBonus => maxHealthBonus;
-    public int DefenseBonus => defenseBonus;
-    public int DamageBonus => damageBonus;
+    private readonly Dictionary<StatType, float> flatBonuses = new();
+    private readonly Dictionary<StatType, float> percentBonuses = new();
+    private readonly Dictionary<StatType, float> overrideValues = new();
 
-    public void AddBonus(StatType stat, float value)
+    private PlayerControl playerControl;
+
+    public float CurrentMoveSpeed { get; private set; }
+    public int CurrentMaxHealth { get; private set; }
+    public int CurrentDefense { get; private set; }
+    public int CurrentDamage { get; private set; }
+
+    private void Awake()
     {
-        switch (stat)
+        playerControl = GetComponent<PlayerControl>();
+        refreshCurrentStats();
+    }
+
+    private void LateUpdate()
+    {
+        refreshCurrentStats();
+    }
+
+    public void AddBonus(StatType stat, StatModifierType type, float value)
+    {
+        if (type == StatModifierType.Override)
         {
-            case StatType.MoveSpeed:
-                moveSpeedBonus += value;
+            overrideValues[stat] = value;
+        }
+        else
+        {
+            applyStackBonus(stat, type, value);
+        }
+
+        refreshCurrentStats();
+    }
+
+    public void RemoveBonus(StatType stat, StatModifierType type, float value)
+    {
+        if (type == StatModifierType.Override)
+        {
+            overrideValues.Remove(stat);
+        }
+        else
+        {
+            applyStackBonus(stat, type, -value);
+        }
+
+        refreshCurrentStats();
+    }
+
+    public float GetStat(StatType stat, float baseValue)
+    {
+        if (overrideValues.TryGetValue(stat, out float overrideValue))
+            return overrideValue;
+
+        float flat = GetValue(flatBonuses, stat);
+        float percent = GetValue(percentBonuses, stat);
+
+        return (baseValue + flat) * (1f + percent);
+    }
+
+    private void applyStackBonus(StatType stat, StatModifierType type, float value)
+    {
+        switch (type)
+        {
+            case StatModifierType.Flat:
+                flatBonuses[stat] = Mathf.Max(GetValue(flatBonuses, stat) + value, 0f);
                 break;
-            case StatType.MaxHealth:
-                maxHealthBonus += Mathf.RoundToInt(value);
-                break;
-            case StatType.Defense:
-                defenseBonus += Mathf.RoundToInt(value);
-                break;
-            case StatType.Damage:
-                damageBonus += Mathf.RoundToInt(value);
+
+            case StatModifierType.Percent:
+                percentBonuses[stat] = Mathf.Max(GetValue(percentBonuses, stat) + value, 0f);
                 break;
         }
     }
 
-    public void RemoveBonus(StatType stat, float value)
+    private static float GetValue(Dictionary<StatType, float> dict, StatType stat)
     {
-        switch (stat)
-        {
-            case StatType.MoveSpeed:
-                moveSpeedBonus -= value;
-                break;
-            case StatType.MaxHealth:
-                maxHealthBonus -= Mathf.RoundToInt(value);
-                break;
-            case StatType.Defense:
-                defenseBonus -= Mathf.RoundToInt(value);
-                break;
-            case StatType.Damage:
-                damageBonus -= Mathf.RoundToInt(value);
-                break;
-        }
+        return dict.TryGetValue(stat, out float value) ? value : 0f;
+    }
 
-        maxHealthBonus = Mathf.Max(0, maxHealthBonus);
-        defenseBonus = Mathf.Max(0, defenseBonus);
-        damageBonus = Mathf.Max(0, damageBonus);
+    public int GetMaxHealth(int baseMaxHealth)
+    {
+        int sourceBase = playerControl != null ? playerControl.BaseMaxHealth : baseMaxHealth;
+        return Mathf.Max(1, Mathf.RoundToInt(GetStat(StatType.MaxHealth, sourceBase)));
+    }
+
+    public int GetDamage(int baseDamage)
+    {
+        int sourceBase = playerControl != null ? playerControl.BaseDamage : baseDamage;
+        return Mathf.Max(1, Mathf.RoundToInt(GetStat(StatType.Damage, sourceBase)));
+    }
+
+    public int GetDefense(int baseDefense)
+    {
+        int sourceBase = playerControl != null ? playerControl.BaseDefense : baseDefense;
+        return Mathf.Max(0, Mathf.RoundToInt(GetStat(StatType.Defense, sourceBase)));
+    }
+
+    public void UpdateDebugStats(
+        float baseMoveSpeed,
+        int baseMaxHealth,
+        int baseDefense,
+        int baseDamage)
+    {
+        debugMoveSpeed = GetStat(StatType.MoveSpeed, baseMoveSpeed);
+        debugMaxHealth = Mathf.RoundToInt(GetStat(StatType.MaxHealth, baseMaxHealth));
+        debugDefense = Mathf.RoundToInt(GetStat(StatType.Defense, baseDefense));
+        debugDamage = Mathf.RoundToInt(GetStat(StatType.Damage, baseDamage));
+    }
+
+    private void refreshCurrentStats()
+    {
+        float baseMoveSpeed = playerControl != null ? playerControl.BaseMoveSpeed : 0f;
+        int baseMaxHealth = playerControl != null ? playerControl.BaseMaxHealth : 0;
+        int baseDefense = playerControl != null ? playerControl.BaseDefense : 0;
+        int baseDamage = playerControl != null ? playerControl.BaseDamage : 0;
+
+        CurrentMoveSpeed = GetStat(StatType.MoveSpeed, baseMoveSpeed);
+        CurrentMaxHealth = Mathf.Max(1, Mathf.RoundToInt(GetStat(StatType.MaxHealth, baseMaxHealth)));
+        CurrentDefense = GetDefense(baseDefense);
+        CurrentDamage = GetDamage(baseDamage);
+
+        debugMoveSpeed = CurrentMoveSpeed;
+        debugMaxHealth = CurrentMaxHealth;
+        debugDefense = CurrentDefense;
+        debugDamage = CurrentDamage;
     }
 }

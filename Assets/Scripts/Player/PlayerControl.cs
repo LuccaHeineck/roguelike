@@ -1,15 +1,29 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class PlayerControl : MonoBehaviour
 {
-    [SerializeField] private float movSpeed = 5f;
+    [Header("Base Stats")]
+    [FormerlySerializedAs("movSpeed")]
+    [SerializeField] private float baseMoveSpeed = 5f;
+    [SerializeField] private int baseMaxHealth = 10;
+    [SerializeField] private int baseDamage = 1;
+    [SerializeField] private int baseDefense = 0;
+
+    [Header("Movement")]
     [SerializeField] private float dashDistance = 15f;
     [SerializeField] private float dashDuration = 0.15f;
 
-    public float MovSpeed => movSpeed + (Stats != null ? Stats.MoveSpeedBonus : 0f);
+    public float BaseMoveSpeed => baseMoveSpeed;
+    public int BaseMaxHealth => baseMaxHealth;
+    public int BaseDamage => baseDamage;
+    public int BaseDefense => baseDefense;
+
+    public float MovSpeed => Stats != null ? Stats.CurrentMoveSpeed : baseMoveSpeed;    
     public float MovSpeedMultiplier { get; private set; }
+
     public float DashDistance => dashDistance;
     public float DashDuration => dashDuration;
     public Rigidbody2D Rb { get; private set; }
