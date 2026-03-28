@@ -30,21 +30,24 @@ public class ItemTester : MonoBehaviour
         {
             int added = inventory.TryAddItem(itemData, addAmountPerPress);
             int total = inventory.GetTotalQuantity(itemData);
-            Debug.Log($"[ADICIONADO] +{added} {itemData.ItemName} | Total: {total} | DamageBonus: {stats.DamageBonus}");
+            int damageStat = stats.CurrentDamage;
+            Debug.Log($"[ADICIONADO] +{added} {itemData.ItemName} | Total: {total} | DamageStat: {damageStat}");
         }
 
         if (Keyboard.current.rKey.wasPressedThisFrame)
         {
             int removed = inventory.TryRemoveItem(itemData, removeAmountPerPress);
             int total = inventory.GetTotalQuantity(itemData);
-            Debug.Log($"[REMOVIDO] -{removed} {itemData.ItemName} | Total: {total} | DamageBonus: {stats.DamageBonus}");
+            int damageStat = stats.CurrentDamage;
+            Debug.Log($"[REMOVIDO] -{removed} {itemData.ItemName} | Total: {total} | DamageStat: {damageStat}");
         }
 
         if (Keyboard.current.qKey.wasPressedThisFrame)
         {
             int stacks = controller.GetRuntimeStackCount(itemData);
             int total = inventory.GetTotalQuantity(itemData);
-            Debug.Log($"[INFO] RuntimeStacks: {stacks} | ItemTotal: {total} | Slots: {inventory.OccupiedSlots}/{inventory.MaxSlots} | DamageBonus: {stats.DamageBonus}");
+            int damageStat = stats.CurrentDamage;
+            Debug.Log($"[INFO] RuntimeStacks: {stacks} | ItemTotal: {total} | Slots: {inventory.OccupiedSlots}/{inventory.MaxSlots} | DamageStat: {damageStat}");
         }
     }
 }
