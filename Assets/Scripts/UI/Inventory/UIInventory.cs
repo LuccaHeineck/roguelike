@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
 
@@ -12,18 +13,17 @@ public class UIInventory : MonoBehaviour
     private UIInventoryControl UIInvControl;
     private List<UIItem> ListUIItems = new List<UIItem>();
 
-    int lastItemSelected = 0;
-    int UIInventorySize = 0;
-
-    public void SetInventoryControl(UIInventoryControl UIInvControl) => this.UIInvControl = UIInvControl;
+    private int lastItemSelected = 0, lastItemMarked = 0, UIInventorySize = 0;
 
     void Awake()
     {
-        HideInventory();
+        gameObject.SetActive(false);
         UIDescription.SetUIInventory(this);
     }
 
     //==============================================================================
+
+    public void SetInventoryControl(UIInventoryControl UIInvControl) => this.UIInvControl = UIInvControl;
 
     public void InitializeUIInventory(int maxSlots)
     {
@@ -46,6 +46,7 @@ public class UIInventory : MonoBehaviour
             // uiItem.OnItemBeginDrag += HandleBeginDrag;
             // uiItem.OnItemEndDrag += HandleEndDrag;
             // uiItem.OnItemDroppedOn += HandleSwap;
+            uiItem.OnPointerExitItem += HandlePointerExit;
         }
 
         HideInventory();
@@ -88,7 +89,12 @@ public class UIInventory : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    public void HideInventory() => gameObject.SetActive(false);
+    public void HideInventory()
+    {
+        ListUIItems[lastItemSelected].desactivateSelector();
+        ListUIItems[lastItemMarked].desactivateMarker();
+        gameObject.SetActive(false);
+    }
 
     //==============================================================================
 
@@ -98,7 +104,7 @@ public class UIInventory : MonoBehaviour
 
         ListUIItems[lastItemSelected].desactivateSelector();
         lastItemSelected = item.transform.GetSiblingIndex();
-        item.activateSelector();
+        ListUIItems[lastItemSelected].activateSelector();
 
         UIDescription.SetDescription(item);
     }
@@ -119,5 +125,7 @@ public class UIInventory : MonoBehaviour
     // private void HandleSwap(UIItem item)
     // {
     // }
+
+    private void HandlePointerExit(UIItem item) => lastItemMarked = item.transform.GetSiblingIndex();
 
 }

@@ -18,7 +18,7 @@ public class UIItem : MonoBehaviour
     [SerializeField] private TMP_Text quantityText;
 
     public event Action<UIItem>
-    OnItemClicked, OnItemRightClicked, OnItemDroppedOn, OnItemBeginDrag, OnItemEndDrag;
+    OnItemClicked, OnItemRightClicked, OnItemDroppedOn, OnItemBeginDrag, OnItemEndDrag, OnPointerExitItem;
     private bool empty = true;
 
     public void Awake()
@@ -76,16 +76,16 @@ public class UIItem : MonoBehaviour
 
     // ======================================================
 
-    public void selectItemFromInventory() => activateSelector();
+    public void selectItemFromInventory() => this.activateSelector();
 
-    public void activateSelector() => itemSelector.gameObject.SetActive(true);
-    public void desactivateSelector() => itemSelector.gameObject.SetActive(false);
+    public void activateSelector() => this.itemSelector.gameObject.SetActive(true);
+    public void desactivateSelector() => this.itemSelector.gameObject.SetActive(false);
 
-    public void activateMarker() => itemSelector.gameObject.SetActive(true);
-    public void desactivateMarker() => itemSelector.gameObject.SetActive(false);
+    public void activateMarker() => this.itemMarker.gameObject.SetActive(true);
+    public void desactivateMarker() => this.itemMarker.gameObject.SetActive(false);
 
-    private void activateBackground() => backgroundQuantityText.SetActive(true);
-    private void desactivateBackground() => backgroundQuantityText.SetActive(false);
+    private void activateBackground() => this.backgroundQuantityText.SetActive(true);
+    private void desactivateBackground() => this.backgroundQuantityText.SetActive(false);
 
 
     // ======================================================
@@ -94,14 +94,15 @@ public class UIItem : MonoBehaviour
     {
         if (empty || Mouse.current.leftButton.isPressed || Mouse.current.rightButton.isPressed)
             return;
-        activateSelector();
+        activateMarker();
     }
 
     public void OnPointerExit()
     {
         if (empty || Mouse.current.leftButton.isPressed || Mouse.current.rightButton.isPressed)
             return;
-        desactivateSelector();
+        desactivateMarker();
+        OnPointerExitItem?.Invoke(this);
     }
 
     public void OnPointerClick(BaseEventData data)
