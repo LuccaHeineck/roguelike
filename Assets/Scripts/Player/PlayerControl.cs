@@ -83,7 +83,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (baseMoveSpeed > 0.0)
         {
-            MovSpeedMultiplier = (MovSpeed + baseMoveSpeed) / baseMoveSpeed;
+            MovSpeedMultiplier = (MovSpeed) / baseMoveSpeed;
             Animator.SetFloat("moveSpeedMultiplier", MovSpeedMultiplier);
         }
     }
