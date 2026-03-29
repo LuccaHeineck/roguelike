@@ -7,10 +7,12 @@ public class UIInventory : MonoBehaviour
 {
     [SerializeField] private UIItem UIItemPrefab;
     [SerializeField] private RectTransform UIInventoryGrid;
-    public UIDescription UIDescription;
+    [SerializeField] private UIDescription UIDescription;
+    [SerializeField] private UIStats UIStats;
+    [HideInInspector] public UIInventoryControl UIInvControl;
+
     public Sprite defaultSlotSprite;
 
-    private UIInventoryControl UIInvControl;
     private List<UIItem> ListUIItems = new List<UIItem>();
 
     private int lastItemSelected = 0, lastItemMarked = 0, UIInventorySize = 0;
@@ -18,7 +20,6 @@ public class UIInventory : MonoBehaviour
     void Awake()
     {
         gameObject.SetActive(false);
-        UIDescription.SetUIInventory(this);
     }
 
     //==============================================================================
@@ -86,6 +87,7 @@ public class UIInventory : MonoBehaviour
     public void ShowInventory()
     {
         UIDescription.ResetDescription();
+        UIStats.SetStats();
         gameObject.SetActive(true);
     }
 

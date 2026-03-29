@@ -21,13 +21,19 @@ public class PlayerStats : MonoBehaviour, IMaxHealthProvider, IDamageProvider, I
 
     private PlayerControl playerControl;
 
-    public float CurrentMoveSpeed { get; private set; }
     public int CurrentMaxHealth { get; private set; }
+    public int CurrentHeal { get; private set; }
     public int CurrentDefense { get; private set; }
+    public float CurrentMoveSpeed { get; private set; }
     public int CurrentDamage { get; private set; }
+    public float CurrentAttackSpeed { get; private set; }
 
     private void Awake()
     {
+        // temporario para testes - remover apenas ao implementar atualizacao destes stats
+        CurrentHeal = 0;
+        CurrentAttackSpeed = 0f;
+
         playerControl = GetComponent<PlayerControl>();
         refreshCurrentStats();
     }

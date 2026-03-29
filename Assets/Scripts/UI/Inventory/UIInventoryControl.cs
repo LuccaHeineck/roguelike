@@ -19,8 +19,10 @@ public class UIInventoryControl : MonoBehaviour
         pDamageSource = GetComponent<DamageSource>();
         pHealth = GetComponent<Health>();
         pStats = GetComponent<PlayerStats>();
-        MaxSlots = pInventory.MaxSlots;
+
         UIInventory.SetInventoryControl(this);
+
+        MaxSlots = pInventory.MaxSlots;
 
         pInventory.OnInventoryChanged += updateUIInventory;
     }
