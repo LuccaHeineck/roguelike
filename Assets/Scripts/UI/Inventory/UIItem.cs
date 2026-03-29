@@ -14,7 +14,8 @@ public class UIItem : MonoBehaviour
     [HideInInspector] public string ID;
     [HideInInspector] public string title, description, effects;
     [HideInInspector] public Image image;
-    public TMP_Text quantityText;
+    [SerializeField] private GameObject backgroundQuantityText;
+    [SerializeField] private TMP_Text quantityText;
 
     public event Action<UIItem>
     OnItemClicked, OnItemRightClicked, OnItemDroppedOn, OnItemBeginDrag, OnItemEndDrag;
@@ -27,6 +28,7 @@ public class UIItem : MonoBehaviour
         ResetData();
         desactivateMarker();
         desactivateSelector();
+        desactivateBackground();
     }
 
     // ======================================================
@@ -34,6 +36,7 @@ public class UIItem : MonoBehaviour
     public void SetData(InventoryStack stack)
     {
         this.gameObject.SetActive(true);
+        item.gameObject.SetActive(true);
         empty = false;
 
         ItemData itemInv = stack.Item;
@@ -64,34 +67,26 @@ public class UIItem : MonoBehaviour
         this.image.sprite = item.ItemSprite;
     }
 
-    public void UpdateData(InventoryStack stack) => this.quantityText.text = stack.Quantity.ToString();
+    public void UpdateData(InventoryStack stack)
+    {
+        this.quantityText.text = stack.Quantity.ToString();
+        if (this.quantityText.text != "1")
+            activateBackground();
+    }
 
     // ======================================================
 
-    public void selectItemFromInventory()
-    {
-        activateSelector();
-    }
+    public void selectItemFromInventory() => activateSelector();
 
-    public void activateSelector()
-    {
-        itemSelector.gameObject.SetActive(true);
-    }
+    public void activateSelector() => itemSelector.gameObject.SetActive(true);
+    public void desactivateSelector() => itemSelector.gameObject.SetActive(false);
 
-    public void desactivateSelector()
-    {
-        itemSelector.gameObject.SetActive(false);
-    }
+    public void activateMarker() => itemSelector.gameObject.SetActive(true);
+    public void desactivateMarker() => itemSelector.gameObject.SetActive(false);
 
-    public void activateMarker()
-    {
-        itemSelector.gameObject.SetActive(true);
-    }
+    private void activateBackground() => backgroundQuantityText.SetActive(true);
+    private void desactivateBackground() => backgroundQuantityText.SetActive(false);
 
-    public void desactivateMarker()
-    {
-        itemSelector.gameObject.SetActive(false);
-    }
 
     // ======================================================
 

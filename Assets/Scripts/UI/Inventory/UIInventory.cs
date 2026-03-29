@@ -21,7 +21,6 @@ public class UIInventory : MonoBehaviour
     {
         HideInventory();
         UIDescription.SetUIInventory(this);
-        //getUIInventorySize();
     }
 
     //==============================================================================
@@ -55,9 +54,8 @@ public class UIInventory : MonoBehaviour
     private void destroyChildren(Transform parent)
     {
         foreach (Transform child in parent)
-        {
             GameObject.Destroy(child.gameObject);
-        }
+
     }
 
     public void UpdateUIInventory()
@@ -78,14 +76,6 @@ public class UIInventory : MonoBehaviour
             ListUIItems[itemIndex].UpdateData(UIInvControl.pInventory.Stacks[itemIndex]);
             itemIndex++;
         }
-    }
-
-    //==============================================================================
-
-    private void getUIInventorySize()
-    {
-        while (ListUIItems[UIInventorySize] != null)
-            UIInventorySize++;
     }
 
     //==============================================================================

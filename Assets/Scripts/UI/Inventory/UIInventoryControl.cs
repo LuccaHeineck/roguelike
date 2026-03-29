@@ -45,5 +45,4 @@ public class UIInventoryControl : MonoBehaviour
     }
 
     private void updateUIInventory() => UIInventory.UpdateUIInventory();
-
 }

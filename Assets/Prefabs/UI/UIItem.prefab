@@ -408,10 +408,12 @@ MonoBehaviour:
   itemSelector: {fileID: 8231804034886255127}
   itemMarker: {fileID: 1437111704319203705}
   item: {fileID: 8780446347403193041}
+  ID: 
   title: 
   description: 
   effects: 
   image: {fileID: 0}
+  backgroundQuantityText: {fileID: 2059932886813912691}
   quantityText: {fileID: 7657233037910555355}
 --- !u!114 &3540980393194410785
 MonoBehaviour:
