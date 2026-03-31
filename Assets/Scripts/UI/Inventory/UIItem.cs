@@ -14,10 +14,11 @@ public class UIItem : MonoBehaviour
     [HideInInspector] public string ID;
     [HideInInspector] public string title, description, effects;
     [HideInInspector] public Image image;
-    public TMP_Text quantityText;
+    [SerializeField] private GameObject backgroundQuantityText;
+    [SerializeField] private TMP_Text quantityText;
 
     public event Action<UIItem>
-    OnItemClicked, OnItemRightClicked, OnItemDroppedOn, OnItemBeginDrag, OnItemEndDrag;
+    OnItemClicked, OnItemRightClicked, OnItemDroppedOn, OnItemBeginDrag, OnItemEndDrag, OnPointerExitItem;
     private bool empty = true;
 
     public void Awake()
@@ -27,6 +28,7 @@ public class UIItem : MonoBehaviour
         ResetData();
         desactivateMarker();
         desactivateSelector();
+        desactivateBackground();
     }
 
     // ======================================================
@@ -34,6 +36,7 @@ public class UIItem : MonoBehaviour
     public void SetData(InventoryStack stack)
     {
         this.gameObject.SetActive(true);
+        item.gameObject.SetActive(true);
         empty = false;
 
         ItemData itemInv = stack.Item;
@@ -64,34 +67,26 @@ public class UIItem : MonoBehaviour
         this.image.sprite = item.ItemSprite;
     }
 
-    public void UpdateData(InventoryStack stack) => this.quantityText.text = stack.Quantity.ToString();
+    public void UpdateData(InventoryStack stack)
+    {
+        this.quantityText.text = stack.Quantity.ToString();
+        if (this.quantityText.text != "1")
+            activateBackground();
+    }
 
     // ======================================================
 
-    public void selectItemFromInventory()
-    {
-        activateSelector();
-    }
+    public void selectItemFromInventory() => this.activateSelector();
 
-    public void activateSelector()
-    {
-        itemSelector.gameObject.SetActive(true);
-    }
+    public void activateSelector() => this.itemSelector.gameObject.SetActive(true);
+    public void desactivateSelector() => this.itemSelector.gameObject.SetActive(false);
 
-    public void desactivateSelector()
-    {
-        itemSelector.gameObject.SetActive(false);
-    }
+    public void activateMarker() => this.itemMarker.gameObject.SetActive(true);
+    public void desactivateMarker() => this.itemMarker.gameObject.SetActive(false);
 
-    public void activateMarker()
-    {
-        itemSelector.gameObject.SetActive(true);
-    }
+    private void activateBackground() => this.backgroundQuantityText.SetActive(true);
+    private void desactivateBackground() => this.backgroundQuantityText.SetActive(false);
 
-    public void desactivateMarker()
-    {
-        itemSelector.gameObject.SetActive(false);
-    }
 
     // ======================================================
 
@@ -99,14 +94,15 @@ public class UIItem : MonoBehaviour
     {
         if (empty || Mouse.current.leftButton.isPressed || Mouse.current.rightButton.isPressed)
             return;
-        activateSelector();
+        activateMarker();
     }
 
     public void OnPointerExit()
     {
         if (empty || Mouse.current.leftButton.isPressed || Mouse.current.rightButton.isPressed)
             return;
-        desactivateSelector();
+        desactivateMarker();
+        OnPointerExitItem?.Invoke(this);
     }
 
     public void OnPointerClick(BaseEventData data)

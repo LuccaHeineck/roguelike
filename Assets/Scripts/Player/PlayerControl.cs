@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour
     public int BaseDamage => baseDamage;
     public int BaseDefense => baseDefense;
 
-    public float MovSpeed => Stats != null ? Stats.CurrentMoveSpeed : baseMoveSpeed;    
+    public float MovSpeed => Stats != null ? Stats.CurrentMoveSpeed : baseMoveSpeed;
     public float MovSpeedMultiplier { get; private set; }
 
     public float DashDistance => dashDistance;
@@ -81,9 +81,9 @@ public class PlayerControl : MonoBehaviour
 
     private void UpdateAnimationSpeed()
     {
-        if (movSpeed > 0.0)
+        if (baseMoveSpeed > 0.0)
         {
-            MovSpeedMultiplier = (movSpeed + Stats.MoveSpeedBonus) / movSpeed;
+            MovSpeedMultiplier = (MovSpeed) / baseMoveSpeed;
             Animator.SetFloat("moveSpeedMultiplier", MovSpeedMultiplier);
         }
     }

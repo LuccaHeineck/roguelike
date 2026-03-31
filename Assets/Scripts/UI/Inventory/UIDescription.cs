@@ -4,13 +4,12 @@ using UnityEngine.UI;
 
 public class UIDescription : MonoBehaviour
 {
+    [SerializeField] private UIInventory UIInv;
+
     [SerializeField] private GameObject itemImage;
     [SerializeField] private TMP_Text itemTitle;
     [SerializeField] private TMP_Text itemDescription;
     [SerializeField] private TMP_Text itemEffects;
-
-    private UIInventory UIInv;
-    public void SetUIInventory(UIInventory UIInv) => this.UIInv = UIInv;
 
     public void ResetDescription()
     {
