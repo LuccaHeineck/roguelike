@@ -1,13 +1,29 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class PlayerControl : MonoBehaviour
 {
-    [SerializeField] private float movSpeed = 5f;
+    [Header("Base Stats")]
+    [FormerlySerializedAs("movSpeed")]
+    [SerializeField] private float baseMoveSpeed = 5f;
+    [SerializeField] private int baseMaxHealth = 10;
+    [SerializeField] private int baseDamage = 1;
+    [SerializeField] private int baseDefense = 0;
+
+    [Header("Movement")]
     [SerializeField] private float dashDistance = 15f;
     [SerializeField] private float dashDuration = 0.15f;
 
-    public float MovSpeed => movSpeed;
+    public float BaseMoveSpeed => baseMoveSpeed;
+    public int BaseMaxHealth => baseMaxHealth;
+    public int BaseDamage => baseDamage;
+    public int BaseDefense => baseDefense;
+
+    public float MovSpeed => Stats != null ? Stats.CurrentMoveSpeed : baseMoveSpeed;
+    public float MovSpeedMultiplier { get; private set; }
+
     public float DashDistance => dashDistance;
     public float DashDuration => dashDuration;
     public Rigidbody2D Rb { get; private set; }
@@ -16,6 +32,7 @@ public class PlayerControl : MonoBehaviour
     public Vector2 LastMoveInput { get; private set; }
     public StateMachine StateMachine { get; private set; }
     public Health Health { get; private set; }
+    public PlayerStats Stats { get; private set; }
     public bool AttackPressed { get; private set; }
     public bool DashPressed { get; private set; }
     public float LastDashAt { get; private set; }
@@ -25,6 +42,8 @@ public class PlayerControl : MonoBehaviour
     public PlayerRunState RunState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
     public PlayerDashState DashState { get; private set; }
+
+    private bool attackRequested;
 
     void Awake()
     {
@@ -40,12 +59,15 @@ public class PlayerControl : MonoBehaviour
     {
         Rb = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
+        Stats = GetComponent<PlayerStats>();
 
         StateMachine.ChangeState(IdleState);
     }
 
     void Update()
     {
+        ResolveAttackRequest();
+        UpdateAnimationSpeed();
         StateMachine.Update();
     }
 
@@ -57,10 +79,19 @@ public class PlayerControl : MonoBehaviour
             LastMoveInput = MoveInput;
     }
 
+    private void UpdateAnimationSpeed()
+    {
+        if (baseMoveSpeed > 0.0)
+        {
+            MovSpeedMultiplier = (MovSpeed) / baseMoveSpeed;
+            Animator.SetFloat("moveSpeedMultiplier", MovSpeedMultiplier);
+        }
+    }
+
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.performed)
-            AttackPressed = true;
+            attackRequested = true;
     }
 
     public void Dash(InputAction.CallbackContext context)
@@ -97,4 +128,31 @@ public class PlayerControl : MonoBehaviour
     public void ConsumeAttack() => AttackPressed = false;
 
     public void ConsumeDash() => DashPressed = false;
+
+    private void ResolveAttackRequest()
+    {
+        if (!attackRequested)
+        {
+            return;
+        }
+
+        attackRequested = false;
+
+        if (IsPointerOverUI())
+        {
+            return;
+        }
+
+        AttackPressed = true;
+    }
+
+    private static bool IsPointerOverUI()
+    {
+        if (EventSystem.current == null)
+        {
+            return false;
+        }
+
+        return EventSystem.current.IsPointerOverGameObject();
+    }
 }

@@ -1,18 +1,29 @@
 using UnityEngine;
 using System;
 
+public interface IMaxHealthProvider
+{
+    int GetMaxHealth(int baseMaxHealth);
+}
+
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int maxHealth;
+    [SerializeField] private int maxHealth = 10;
+
+    private IMaxHealthProvider maxHealthProvider;
 
     public int CurrentHealth { get; private set; }
+    public int MaxHealth => maxHealthProvider != null
+        ? Mathf.Max(1, maxHealthProvider.GetMaxHealth(maxHealth))
+        : Mathf.Max(1, maxHealth);
     public bool IsDead { get; private set; }
     public event Action OnDeath;
     public event Action OnDamage;
 
     void Awake()
     {
-        CurrentHealth = maxHealth;
+        maxHealthProvider = GetComponent<IMaxHealthProvider>();
+        CurrentHealth = MaxHealth;
     }
 
     public void TakeDamage(int damage)
@@ -35,7 +46,7 @@ public class Health : MonoBehaviour
     {
         if (IsDead) return;
 
-        CurrentHealth = Mathf.Min(CurrentHealth + amount, maxHealth);
+        CurrentHealth = Mathf.Min(CurrentHealth + amount, MaxHealth);
     }
 
     private void Hurt()
