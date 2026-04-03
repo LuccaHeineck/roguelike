@@ -13,4 +13,7 @@ public class FaccaoData : ScriptableObject
 
     [Header("Habilidades")]
     public HabilidadeData[] habilidades; // até 9
+
+    [Header("Personagens — máximo 3")]
+    public PersonagemData[] personagens;
 }

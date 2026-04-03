@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70d572292bfbeb49afeafca915b0e29, type: 3}
+  m_Name: Humano
+  m_EditorClassIdentifier: Assembly-CSharp::FaccaoData
+  nomeFaccao: Humano
+  descricao: "Descri\xE7\xE3o gen\xE9rica para fac\xE7\xE3o inicial. Muito interessante
+    Muito interessante Muito interessante Muito interessante.\nMuito interessante
+    Muito interessante Muito interessante "
+  imagem: {fileID: 0}
+  habilidades:
+  - {fileID: 11400000, guid: c79af69c9fc1ee846a42affbab8a8c8a, type: 2}
+  - {fileID: 11400000, guid: d6bbf6b9e04c93941867478d4272c72a, type: 2}
+  - {fileID: 11400000, guid: aae44b0e5d4355743a5c72d17b6e24a5, type: 2}
+  - {fileID: 11400000, guid: 9665a6d27792ebb48bc28813a7f2e95d, type: 2}
+  - {fileID: 11400000, guid: 9e46aaeb0028c6545a4e9b1485b928c7, type: 2}
+  - {fileID: 11400000, guid: 7653318bc37b17d47be61906fd23432d, type: 2}
+  - {fileID: 11400000, guid: c4ace3ae3c4e0e04aa93e6d101cbb610, type: 2}
+  - {fileID: 11400000, guid: d1fb2bcf129341541aa175277c4fd154, type: 2}
+  - {fileID: 11400000, guid: 278ebc88e744ce64aa23e364d3df22db, type: 2}
+  personagens:
+  - {fileID: 11400000, guid: 0caaa1b787fd82c4cab854fdc3100fb9, type: 2}
+  - {fileID: 11400000, guid: 18392930f4e4680438548ba661eda720, type: 2}
+  - {fileID: 11400000, guid: 0a7c44a5ceb99264a84a37852bde8311, type: 2}
