@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Scripting.APIUpdating;
@@ -21,6 +22,9 @@ public class SlimeControl : MonoBehaviour
     public Health Health { get; private set; }
     [HideInInspector] public bool IsAttacking { get; set; }
     [HideInInspector] public int CurrentPointIndex { get; set; }
+
+    [Header ("Recompensa")]
+    [SerializeField] private int xpRecompensa = 150;
 
     public SlimeIdleState IdleState { get; private set; }
     public SlimeWalkState WalkState { get; private set; }
@@ -147,6 +151,9 @@ public class SlimeControl : MonoBehaviour
 
     public void Die()
     {
+        Experience playerExperience = player.GetComponent<Experience>();
+        if (playerExperience != null)
+            playerExperience.AddXP(xpRecompensa);
         StateMachine.ChangeState(DeadState);
     }
 
