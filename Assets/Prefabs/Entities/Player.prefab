@@ -403,6 +403,8 @@ GameObject:
   - component: {fileID: 2881263092270960316}
   - component: {fileID: 6901279677359738688}
   - component: {fileID: 7499290473648088060}
+  - component: {fileID: 2824431243306105113}
+  - component: {fileID: 4866638694686460379}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -759,7 +761,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e91426bf9d6c846a76b8add64919d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
-  movSpeed: 10
+  baseMoveSpeed: 10
+  baseMaxHealth: 10
+  baseDamage: 1
+  baseDefense: 0
   dashDistance: 5
   dashDuration: 0.15
 --- !u!114 &1219147516959553264
@@ -790,7 +795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e64fac96c38464081275aa9354437b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageSource
-  damage: 5
+  baseDamage: 1
 --- !u!114 &3417906727404026385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,10 +821,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0366d6a3498b5924cbb0ce6636153765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  moveSpeedBonus: 0
-  maxHealthBonus: 0
-  defenseBonus: 0
-  damageBonus: 0
+  debugMoveSpeed: 0
+  debugMaxHealth: 0
+  debugDefense: 0
+  debugDamage: 0
 --- !u!114 &6901279677359738688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,6 +858,40 @@ MonoBehaviour:
   pDamageSource: {fileID: 0}
   pHealth: {fileID: 0}
   pStats: {fileID: 0}
+  MaxSlots: 0
+--- !u!114 &2824431243306105113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7220173918255507538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008ae4d97464310408f6528f53989a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Experience
+  xpBaseParaPrimeiroNivel: 100
+  multiplicador: 1.4
+  debugNivel: 0
+  debugXpAtual: 0
+  debugXpNecessario: 0
+--- !u!114 &4866638694686460379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7220173918255507538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb04a1f8e8c8a2b4a948025dd7d1ffd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLevelUp
+  bonusMaxHealth: 5
+  bonusDamage: 1
+  bonusDefense: 0.5
+  bonusMoveSpeed: 0.1
 --- !u!1 &7721481249557805268
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerLevelUp : MonoBehaviour
 {
     [Header("Bônus por nível")]
-    [SerializeField] private float bonusMaxHealth = 5f;
+    [SerializeField] private float bonusMaxHealth = 5f; //esses valores aqui cpa podem alterar depenendo do
     [SerializeField] private float bonusDamage = 1f;
     [SerializeField] private float bonusDefense = 0.5f;
     [SerializeField] private float bonusMoveSpeed = 0.1f;

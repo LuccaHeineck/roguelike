@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class XPBarUI : MonoBehaviour
+public class UIXPBar : MonoBehaviour
 {
     [Header("Referências")]
     public Experience experience;
@@ -35,7 +35,8 @@ public class XPBarUI : MonoBehaviour
         txtXP.text = $"{experience.XpAtual}/{experience.XpNecessario}";
     }
 
-    private void AtualizarNivel(int novoNivel)
+
+    public void AtualizarNivel(int novoNivel)
     {
         txtNivel.text = $"{novoNivel}";
     }

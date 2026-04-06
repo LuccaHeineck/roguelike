@@ -11,6 +11,8 @@ public class UIInventory : MonoBehaviour
     [SerializeField] private UIStats UIStats;
     [HideInInspector] public UIInventoryControl UIInvControl;
 
+    private UIXPBar UIXPBar;
+
     public Sprite defaultSlotSprite;
 
     private List<UIItem> ListUIItems = new List<UIItem>();
@@ -78,6 +80,8 @@ public class UIInventory : MonoBehaviour
             ListUIItems[itemIndex].UpdateData(UIInvControl.pInventory.Stacks[itemIndex]);
             itemIndex++;
         }
+
+
     }
 
     //==============================================================================
