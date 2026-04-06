@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
 
     private IMaxHealthProvider maxHealthProvider;
 
-    public int CurrentHealth { get; private set; }
+    public int CurrentHealth;
     public int MaxHealth => maxHealthProvider != null
         ? Mathf.Max(1, maxHealthProvider.GetMaxHealth(maxHealth))
         : Mathf.Max(1, maxHealth);

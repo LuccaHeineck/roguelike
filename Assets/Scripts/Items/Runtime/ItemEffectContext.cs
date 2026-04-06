@@ -12,9 +12,9 @@ public class ItemEffectContext
     {
         Owner = owner;
         OwnerTransform = owner != null ? owner.transform : null;
-        PlayerControl = owner != null ? owner.GetComponent<PlayerControl>() : null;
-        PlayerStats = owner != null ? owner.GetComponent<PlayerStats>() : null;
-        Health = owner != null ? owner.GetComponent<Health>() : null;
+        PlayerControl = FindComponent<PlayerControl>(owner);
+        PlayerStats = FindComponent<PlayerStats>(owner);
+        Health = FindComponent<Health>(owner);
     }
 
     public GameObject Owner { get; }
@@ -22,4 +22,14 @@ public class ItemEffectContext
     public PlayerControl PlayerControl { get; }
     public PlayerStats PlayerStats { get; }
     public Health Health { get; }
+
+    private static T FindComponent<T>(GameObject owner) where T : Component
+    {
+        if (owner == null)
+            return null;
+
+        return owner.GetComponent<T>()
+            ?? owner.GetComponentInChildren<T>()
+            ?? owner.GetComponentInParent<T>();
+    }
 }
