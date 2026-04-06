@@ -13,6 +13,7 @@ public class UIXPBar : MonoBehaviour
     private void OnEnable()
     {
         experience.OnLevelUp += AtualizarNivel;
+        txtNivel.text = $"{experience.Nivel}";
     }
 
     private void OnDisable()
