@@ -428,6 +428,7 @@ Transform:
   - {fileID: 5005415104463622699}
   - {fileID: 2173516329902946858}
   - {fileID: 5796768359487174589}
+  - {fileID: 508046053650404152}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8973892786588399178
@@ -572,8 +573,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0062609892, y: -0.97761935}
-  m_Size: {x: 1.3499507, y: 0.5735962}
+  m_Offset: {x: 0, y: -1}
+  m_Size: {x: 1.12, y: 0.3}
   m_Direction: 1
 --- !u!114 &1975646896462483760
 MonoBehaviour:
@@ -759,7 +760,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e91426bf9d6c846a76b8add64919d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
-  movSpeed: 10
+  baseMoveSpeed: 10
+  baseMaxHealth: 10
+  baseDamage: 1
+  baseDefense: 0
   dashDistance: 5
   dashDuration: 0.15
 --- !u!114 &1219147516959553264
@@ -790,7 +794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e64fac96c38464081275aa9354437b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageSource
-  damage: 5
+  baseDamage: 1
 --- !u!114 &3417906727404026385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,10 +820,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0366d6a3498b5924cbb0ce6636153765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  moveSpeedBonus: 0
-  maxHealthBonus: 0
-  defenseBonus: 0
-  damageBonus: 0
+  debugMoveSpeed: 0
+  debugMaxHealth: 0
+  debugDefense: 0
+  debugDamage: 0
 --- !u!114 &6901279677359738688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,6 +857,7 @@ MonoBehaviour:
   pDamageSource: {fileID: 0}
   pHealth: {fileID: 0}
   pStats: {fileID: 0}
+  MaxSlots: 0
 --- !u!1 &7721481249557805268
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,3 +959,72 @@ PolygonCollider2D:
       - {x: 1.9881372, y: 0.859053}
       - {x: -0.6394161, y: 0.93395406}
   m_UseDelaunayMesh: 1
+--- !u!1 &8732759730505248246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 508046053650404152}
+  - component: {fileID: 6045129746901118126}
+  m_Layer: 0
+  m_Name: InteractionDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &508046053650404152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8732759730505248246}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8130280897739518581}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &6045129746901118126
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8732759730505248246}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 3, y: 3.5}
+  m_Direction: 0
