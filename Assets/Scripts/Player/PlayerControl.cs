@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private int baseMaxHealth = 10;
     [SerializeField] private int baseDamage = 1;
     [SerializeField] private int baseDefense = 0;
+    [SerializeField] private float baseAttackSpeed = 1f;
 
     [Header("Movement")]
     [SerializeField] private float dashDistance = 15f;
@@ -20,6 +21,7 @@ public class PlayerControl : MonoBehaviour
     public int BaseMaxHealth => baseMaxHealth;
     public int BaseDamage => baseDamage;
     public int BaseDefense => baseDefense;
+    public float BaseAttackSpeed => baseAttackSpeed;
 
     public float MovSpeed => Stats != null ? Stats.CurrentMoveSpeed : baseMoveSpeed;
     public float MovSpeedMultiplier { get; private set; }
