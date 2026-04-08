@@ -5,21 +5,34 @@ using TMPro;
 public class UIHPBar : MonoBehaviour
 {
     [Header("Referências")]
-    public Health health;
+    public PlayerStats playerStats;
     public Image hpBarFill;
     public TextMeshProUGUI txtHP;
 
+    private void Awake()
+    {
+        if (playerStats != null) return;
+
+        UIInventoryControl inventoryControl = FindFirstObjectByType<UIInventoryControl>();
+        if (inventoryControl != null)
+            playerStats = inventoryControl.pStats;
+
+        if (playerStats == null)
+            playerStats = FindFirstObjectByType<PlayerStats>();
+    }
+
     private void OnEnable()
     {
-        health.OnDamage += AtualizarBarra;
-        health.OnDeath += AtualizarBarra;
+        if (playerStats != null)
+            playerStats.OnHealthChanged += OnHealthChanged;
+
         AtualizarBarra(); // atualiza ao abrir o inventário
     }
 
     private void OnDisable()
     {
-        health.OnDamage -= AtualizarBarra;
-        health.OnDeath -= AtualizarBarra;
+        if (playerStats != null)
+            playerStats.OnHealthChanged -= OnHealthChanged;
     }
 
     private void Start()
@@ -29,12 +42,20 @@ public class UIHPBar : MonoBehaviour
 
     private void AtualizarBarra()
     {
-        if (health == null) return;
+        if (playerStats == null) return;
 
-        float progresso = (float)health.CurrentHealth / health.MaxHealth;
+        int currentHealth = playerStats.CurrentHealth;
+        int maxHealth = Mathf.Max(1, playerStats.CurrentMaxHealth);
+
+        float progresso = (float)currentHealth / maxHealth;
         hpBarFill.fillAmount = progresso;
 
         if (txtHP != null)
-            txtHP.text = $"{health.CurrentHealth}/{health.MaxHealth}";
+            txtHP.text = $"{currentHealth}/{maxHealth}";
+    }
+
+    private void OnHealthChanged(int currentHealth, int maxHealth)
+    {
+        AtualizarBarra();
     }
 }
