@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/* 
+ * BurnOnHitEffect é uma classe que aplica o BurnEffect quando o player dá um hit
+ * Ele seta os valores do burn e em seu "onHitDealt" atribui o BurnEffect no health da entidade e aplica o burn
+ */
+
 [CreateAssetMenu(fileName = "BurnOnHitEffect", menuName = "Game/Items/Runtime Effects/Burn On Hit")]
 public class BurnOnHitEffect : RuntimeItemEffect
 {

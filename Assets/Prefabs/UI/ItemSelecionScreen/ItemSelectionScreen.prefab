@@ -121,7 +121,13 @@ MonoBehaviour:
   - {fileID: 2046717981528484936}
   - {fileID: 8227517053176188523}
   inventory: {fileID: 0}
-  itemPool: []
+  itemPool:
+  - {fileID: 11400000, guid: 083068370e3b3a84eb1ba6a2e5abf791, type: 2}
+  - {fileID: 11400000, guid: 8e9a2b8f7cf6c1f41889b6bbba4e2f90, type: 2}
+  - {fileID: 11400000, guid: 5fb15350097551e4d9ff2a438949e538, type: 2}
+  - {fileID: 11400000, guid: b44f0f40777a6d749bf374fb4142d53c, type: 2}
+  - {fileID: 11400000, guid: f21274b8165ed5f4990909b137f42fbf, type: 2}
+  - {fileID: 11400000, guid: 92d2c96df41c56e4d80eab7197773cb3, type: 2}
   openSelectionKey: 16
 --- !u!1 &5466127354915717244
 GameObject:
