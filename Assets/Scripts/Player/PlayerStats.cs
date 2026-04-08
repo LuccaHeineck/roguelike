@@ -10,6 +10,13 @@ using System;
 
 public class PlayerStats : MonoBehaviour, IMaxHealthProvider, ICurrentHealthState, IDamageProvider, IDefenseProvider
 {
+    [Header("Base Stats")]
+    [SerializeField] private float baseMoveSpeed = 10f;
+    [SerializeField] private int baseMaxHealth = 10;
+    [SerializeField] private int baseDamage = 1;
+    [SerializeField] private int baseDefense = 0;
+    [SerializeField] private float baseAttackSpeed = 1f;
+
     [Header("DEBUG (Read Only)")]
     [SerializeField] private int debugCurrentHealth;
     [SerializeField] private float debugMoveSpeed;
@@ -22,10 +29,14 @@ public class PlayerStats : MonoBehaviour, IMaxHealthProvider, ICurrentHealthStat
     private readonly Dictionary<StatType, float> percentBonuses = new();
     private readonly Dictionary<StatType, float> overrideValues = new();
 
-    private PlayerControl playerControl;
     private Health healthComponent;
 
     public int CurrentMaxHealth { get; private set; }
+    public float BaseMoveSpeed => baseMoveSpeed;
+    public int BaseMaxHealth => baseMaxHealth;
+    public int BaseDamage => baseDamage;
+    public int BaseDefense => baseDefense;
+    public float BaseAttackSpeed => baseAttackSpeed;
     public int CurrentHeal { get; private set; }
     public int CurrentDefense { get; private set; }
     public float CurrentMoveSpeed { get; private set; }
@@ -49,7 +60,6 @@ public class PlayerStats : MonoBehaviour, IMaxHealthProvider, ICurrentHealthStat
         CurrentHeal = 0;
         CurrentAttackSpeed = 0f;
 
-        playerControl = GetComponent<PlayerControl>();
         healthComponent = GetComponent<Health>();
 
         if (healthComponent != null)
@@ -104,29 +114,31 @@ public class PlayerStats : MonoBehaviour, IMaxHealthProvider, ICurrentHealthStat
         switch (stat)
         {
             case StatType.MoveSpeed:
-                CurrentMoveSpeed = Mathf.Max(0, (float)GetStat(StatType.MoveSpeed, playerControl.BaseMoveSpeed));
+                CurrentMoveSpeed = Mathf.Max(0, (float)GetStat(StatType.MoveSpeed, baseMoveSpeed));
                 newValue = CurrentMoveSpeed;
                 break;
             case StatType.MaxHealth:
-                CurrentMaxHealth = GetMaxHealth(playerControl.BaseMaxHealth);
+                CurrentMaxHealth = GetMaxHealth(baseMaxHealth);
                 newValue = CurrentMaxHealth;
 
                 if (healthComponent != null)
                     healthComponent.SyncCurrentHealthToMax();
                 break;
             case StatType.Defense:
-                CurrentDefense = GetDefense(playerControl.BaseDefense);
+                CurrentDefense = GetDefense(baseDefense);
                 newValue = CurrentDefense;
                 break;
             case StatType.Damage:
-                CurrentDamage = GetDamage(playerControl.BaseDamage);
+                CurrentDamage = GetDamage(baseDamage);
                 newValue = CurrentDamage;
                 break;
             case StatType.AttackSpeed:
-                CurrentAttackSpeed = GetAttackSpeed(playerControl.BaseAttackSpeed);
+                CurrentAttackSpeed = GetAttackSpeed(baseAttackSpeed);
                 newValue = CurrentAttackSpeed;
                 break;
         }
+
+        SyncDebugStats();
 
         OnStatChanged?.Invoke(stat, newValue);
     }
@@ -163,26 +175,22 @@ public class PlayerStats : MonoBehaviour, IMaxHealthProvider, ICurrentHealthStat
 
     public int GetMaxHealth(int baseMaxHealth)
     {
-        int sourceBase = playerControl != null ? playerControl.BaseMaxHealth : baseMaxHealth;
-        return Mathf.Max(1, Mathf.RoundToInt(GetStat(StatType.MaxHealth, sourceBase)));
+        return Mathf.Max(1, Mathf.RoundToInt(GetStat(StatType.MaxHealth, baseMaxHealth)));
     }
 
     public int GetDamage(int baseDamage)
     {
-        int sourceBase = playerControl != null ? playerControl.BaseDamage : baseDamage;
-        return Mathf.Max(1, Mathf.RoundToInt(GetStat(StatType.Damage, sourceBase)));
+        return Mathf.Max(1, Mathf.RoundToInt(GetStat(StatType.Damage, baseDamage)));
     }
 
     public int GetDefense(int baseDefense)
     {
-        int sourceBase = playerControl != null ? playerControl.BaseDefense : baseDefense;
-        return Mathf.Max(0, Mathf.RoundToInt(GetStat(StatType.Defense, sourceBase)));
+        return Mathf.Max(0, Mathf.RoundToInt(GetStat(StatType.Defense, baseDefense)));
     }
 
     public float GetAttackSpeed(float baseAttackSpeed)
     {
-        float sourceBase = playerControl != null ? playerControl.BaseAttackSpeed : baseAttackSpeed;
-        return Mathf.Max(0f, GetStat(StatType.AttackSpeed, sourceBase));
+        return Mathf.Max(0f, GetStat(StatType.AttackSpeed, baseAttackSpeed));
     }
 
     public float GetCurrentStat(StatType stat)
@@ -213,12 +221,6 @@ public class PlayerStats : MonoBehaviour, IMaxHealthProvider, ICurrentHealthStat
 
     private void refreshCurrentStats()
     {
-        float baseMoveSpeed = playerControl != null ? playerControl.BaseMoveSpeed : 0f;
-        int baseMaxHealth = playerControl != null ? playerControl.BaseMaxHealth : 0;
-        int baseDefense = playerControl != null ? playerControl.BaseDefense : 0;
-        int baseDamage = playerControl != null ? playerControl.BaseDamage : 0;
-        float baseAttackSpeed = playerControl != null ? playerControl.BaseAttackSpeed : 1f;
-
         CurrentMoveSpeed = GetStat(StatType.MoveSpeed, baseMoveSpeed);
         CurrentMaxHealth = Mathf.Max(1, Mathf.RoundToInt(GetStat(StatType.MaxHealth, baseMaxHealth)));
         CurrentDefense = GetDefense(baseDefense);
@@ -228,6 +230,11 @@ public class PlayerStats : MonoBehaviour, IMaxHealthProvider, ICurrentHealthStat
         if (healthComponent != null)
             healthComponent.SyncCurrentHealthToMax();
 
+        SyncDebugStats();
+    }
+
+    private void SyncDebugStats()
+    {
         debugMoveSpeed = CurrentMoveSpeed;
         debugCurrentHealth = CurrentHealth;
         debugMaxHealth = CurrentMaxHealth;
