@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 
 public class PlayerControl : MonoBehaviour
 {
+    private const float moveInputDeadZoneSqr = 0.0001f;
+
     [Header("Movement")]
     [SerializeField] private float dashDistance = 15f;
     [SerializeField] private float dashDuration = 0.15f;
@@ -30,6 +32,9 @@ public class PlayerControl : MonoBehaviour
     public PlayerAttackState AttackState { get; private set; }
     public PlayerDashState DashState { get; private set; }
 
+    public bool HasMoveInput => MoveInput.sqrMagnitude > moveInputDeadZoneSqr;
+    public Vector2 MoveDirection => HasMoveInput ? MoveInput.normalized : Vector2.zero;
+
     private bool attackRequested;
 
     void Awake()
@@ -48,6 +53,8 @@ public class PlayerControl : MonoBehaviour
         Animator = GetComponent<Animator>();
         Stats = GetComponent<PlayerStats>();
 
+        Rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+
         StateMachine.ChangeState(IdleState);
     }
 
@@ -60,10 +67,12 @@ public class PlayerControl : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        MoveInput = context.ReadValue<Vector2>();
+        Vector2 input = context.ReadValue<Vector2>();
+
+        MoveInput = input.sqrMagnitude > moveInputDeadZoneSqr ? input : Vector2.zero;
 
         if (MoveInput != Vector2.zero)
-            LastMoveInput = MoveInput;
+            LastMoveInput = MoveInput.normalized;
     }
 
     private void UpdateAnimationSpeed()
