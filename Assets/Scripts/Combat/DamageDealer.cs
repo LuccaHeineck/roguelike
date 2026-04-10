@@ -13,7 +13,6 @@ public class DamageDealer : MonoBehaviour
     private void Awake()
     {
         damageSource = GetComponentInParent<DamageSource>();
-        sourceEffectController = transform.root.GetComponent<ItemEffectController>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,6 +34,7 @@ public class DamageDealer : MonoBehaviour
 
             health.TakeDamage(finalDamage);
 
+            sourceEffectController = ResolveSourceEffectController();
             if (sourceEffectController != null)
             {
                 Vector2 hitPoint = other.ClosestPoint(transform.position);
@@ -42,5 +42,22 @@ public class DamageDealer : MonoBehaviour
                 sourceEffectController.NotifyHitDealt(hitEvent);
             }
         }
+    }
+
+    private ItemEffectController ResolveSourceEffectController()
+    {
+        ItemEffectController controller = transform.root.GetComponent<ItemEffectController>();
+        if (controller != null)
+        {
+            return controller;
+        }
+
+        controller = GetComponentInParent<ItemEffectController>();
+        if (controller != null)
+        {
+            return controller;
+        }
+
+        return GetComponentInChildren<ItemEffectController>();
     }
 }

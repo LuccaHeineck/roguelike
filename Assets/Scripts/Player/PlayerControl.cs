@@ -1,27 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 public class PlayerControl : MonoBehaviour
 {
-    [Header("Base Stats")]
-    [FormerlySerializedAs("movSpeed")]
-    [SerializeField] private float baseMoveSpeed = 5f;
-    [SerializeField] private int baseMaxHealth = 10;
-    [SerializeField] private int baseDamage = 1;
-    [SerializeField] private int baseDefense = 0;
+    private const float moveInputDeadZoneSqr = 0.0001f;
 
     [Header("Movement")]
     [SerializeField] private float dashDistance = 15f;
     [SerializeField] private float dashDuration = 0.15f;
 
-    public float BaseMoveSpeed => baseMoveSpeed;
-    public int BaseMaxHealth => baseMaxHealth;
-    public int BaseDamage => baseDamage;
-    public int BaseDefense => baseDefense;
-
-    public float MovSpeed => Stats != null ? Stats.CurrentMoveSpeed : baseMoveSpeed;
+    public float MovSpeed => Stats != null ? Stats.CurrentMoveSpeed : 0f;
     public float MovSpeedMultiplier { get; private set; }
 
     public float DashDistance => dashDistance;
@@ -43,6 +32,9 @@ public class PlayerControl : MonoBehaviour
     public PlayerAttackState AttackState { get; private set; }
     public PlayerDashState DashState { get; private set; }
 
+    public bool HasMoveInput => MoveInput.sqrMagnitude > moveInputDeadZoneSqr;
+    public Vector2 MoveDirection => HasMoveInput ? MoveInput.normalized : Vector2.zero;
+
     private bool attackRequested;
 
     void Awake()
@@ -61,6 +53,8 @@ public class PlayerControl : MonoBehaviour
         Animator = GetComponent<Animator>();
         Stats = GetComponent<PlayerStats>();
 
+        Rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+
         StateMachine.ChangeState(IdleState);
     }
 
@@ -73,17 +67,19 @@ public class PlayerControl : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        MoveInput = context.ReadValue<Vector2>();
+        Vector2 input = context.ReadValue<Vector2>();
+
+        MoveInput = input.sqrMagnitude > moveInputDeadZoneSqr ? input : Vector2.zero;
 
         if (MoveInput != Vector2.zero)
-            LastMoveInput = MoveInput;
+            LastMoveInput = MoveInput.normalized;
     }
 
     private void UpdateAnimationSpeed()
     {
-        if (baseMoveSpeed > 0.0)
+        if (Stats != null && Stats.BaseMoveSpeed > 0.0f)
         {
-            MovSpeedMultiplier = (MovSpeed) / baseMoveSpeed;
+            MovSpeedMultiplier = MovSpeed / Stats.BaseMoveSpeed;
             Animator.SetFloat("moveSpeedMultiplier", MovSpeedMultiplier);
         }
     }

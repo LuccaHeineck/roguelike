@@ -54,7 +54,7 @@ public class PlayerAttackState : IState
                 return;
             }
 
-            if (player.MoveInput != Vector2.zero)
+            if (player.HasMoveInput)
                 player.StartRun();
             else
                 player.StartIdle();

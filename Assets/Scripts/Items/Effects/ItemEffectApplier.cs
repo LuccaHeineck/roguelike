@@ -31,7 +31,8 @@ public static class ItemEffectApplier
             }
         }
 
-        ItemEffectController runtimeController = playerStats.GetComponent<ItemEffectController>();
+        ItemEffectController runtimeController = ResolveOrCreateRuntimeController(playerStats);
+
         if (runtimeController != null)
         {
             runtimeController.AddItemEffects(itemData, stackCount);
@@ -63,10 +64,26 @@ public static class ItemEffectApplier
             }
         }
 
-        ItemEffectController runtimeController = playerStats.GetComponent<ItemEffectController>();
+        ItemEffectController runtimeController = ResolveOrCreateRuntimeController(playerStats);
+
         if (runtimeController != null)
         {
             runtimeController.RemoveItemEffects(itemData, stackCount);
         }
+    }
+
+    private static ItemEffectController ResolveOrCreateRuntimeController(PlayerStats playerStats)
+    {
+        if (playerStats == null)
+            return null;
+
+        ItemEffectController controller = playerStats.GetComponent<ItemEffectController>()
+            ?? playerStats.GetComponentInParent<ItemEffectController>()
+            ?? playerStats.GetComponentInChildren<ItemEffectController>();
+
+        if (controller != null)
+            return controller;
+
+        return playerStats.transform.root.gameObject.AddComponent<ItemEffectController>();
     }
 }
