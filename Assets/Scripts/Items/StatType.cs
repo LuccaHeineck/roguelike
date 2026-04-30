@@ -9,5 +9,6 @@ public enum StatType
     MoveSpeed,
     MaxHealth,
     Defense,
-    Damage
+    Damage,
+    AttackSpeed
 }

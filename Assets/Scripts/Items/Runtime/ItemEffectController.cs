@@ -73,7 +73,6 @@ public class ItemEffectController : MonoBehaviour
             {
                 continue;
             }
-
             instance.OnApply(context);
             createdInstances.Add(instance);
             activeInstances.Add(instance);
@@ -161,6 +160,7 @@ public class ItemEffectController : MonoBehaviour
 
     public void NotifyHitDealt(HitEventData hitData)
     {
+
         for (int i = 0; i < activeInstances.Count; i++)
         {
             activeInstances[i].OnHitDealt(context, hitData);

@@ -14,8 +14,8 @@ public class PlayerRunState : IState
     public void Update()
     {
         player.Rb.linearVelocity = player.MoveInput * player.MovSpeed;
-        player.Animator.SetFloat("InputX", player.MoveInput.x);
-        player.Animator.SetFloat("InputY", player.MoveInput.y);
+        player.Animator.SetFloat("InputX", player.MoveDirection.x);
+        player.Animator.SetFloat("InputY", player.MoveDirection.y);
 
         if (player.DashPressed)
         {
@@ -29,7 +29,7 @@ public class PlayerRunState : IState
             return;
         }
 
-        if (player.MoveInput == Vector2.zero)
+        if (!player.HasMoveInput)
             player.StartIdle();
     }
 

@@ -1,5 +1,11 @@
 using UnityEngine;
 
+/* 
+ * BurnEffect é um status effect que pode ser usado para aplicar burn em uma entidade
+ * usa como base o componente Health, aplicando dano ao longo do tempo enquanto o burn estiver ativo.
+ * O burn pode ter múltiplas stacks, aumentando o dano por tick, e tem uma duração que pode ser renovada ou aumentada ao reaplicar o burn.
+ */
+
 public class BurnEffect : MonoBehaviour
 {
 	[SerializeField] private bool showDebugLogs;
